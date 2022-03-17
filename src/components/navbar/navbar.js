@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 
 // temporary fix will be replaced images context to avoid prop drilling
@@ -18,7 +19,7 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <a href="#" className="nav-link">
+        <Link className="nav-link" to="/">
           <img
             src={`${process.env.PUBLIC_URL}${logoPath}`}
             alt={logoDesc}
@@ -27,7 +28,7 @@ function Navbar() {
             className="d-inline-block align-text-top"
           />
           <span className="estore-name">3 on 3 Store</span>
-        </a>
+        </Link>
       </div>
 
       <div className="search-box">
@@ -49,38 +50,38 @@ function Navbar() {
 
       <ul className={`navbar-nav ${toggleShowNavbarNav}`} id="navbar-nav">
         <li className="nav-item">
-          <a href="pages/login.html" className="nav-link">
+          <Link to="/login" className="nav-link">
             <button className="btn btn-secondary bg-grey">Login</button>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="pages/signup.html" className="nav-link">
+          <Link to="/signup" className="nav-link">
             <button className="btn btn-secondary bg-grey">Signup</button>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="#" className="nav-link nav-link-with-hover-reset dflex">
+          <Link to="/profile" className="nav-link nav-link-with-hover-reset dflex">
             <span className="material-icons">person_outline</span>
             <span className="material-icons-txt">Profile</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a
-            href="pages/wishlist.html"
+          <Link
+            to="/wishlist"
             className="nav-link nav-link-with-hover-reset dflex"
           >
             <span className="material-icons">favorite_border</span>
             <span className="material-icons-txt">Wishlist</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a
-            href="pages/cart.html"
+          <Link
+            to="/cart"
             className="nav-link nav-link-with-hover-reset  dflex"
           >
             <span className="material-icons-outlined">shopping_cart</span>
             <span className="material-icons-txt">Cart</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </nav>
