@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "./navbar.styles.css";
 
-function Navbar({ logoImage }) {
-  const [toggleShowNavbarNav, setToggleShowNavbarNav] =  useState("");
+// temporary fix will be replaced images context to avoid prop drilling
+const logoImage = {
+  logoPath: "/assets/logo/logo.svg",
+  logoDesc: "Logo for 3 on 3 store",
+};
+
+function Navbar() {
+  const [toggleShowNavbarNav, setToggleShowNavbarNav] = useState("");
   const { logoPath, logoDesc } = logoImage;
 
-  function hamburgerMenuClickHandler(){
-        setToggleShowNavbarNav(prevShow => prevShow ? "" : "show");
+  function hamburgerMenuClickHandler() {
+    setToggleShowNavbarNav((prevShow) => (prevShow ? "" : "show"));
   }
 
   return (
@@ -33,7 +39,11 @@ function Navbar({ logoImage }) {
         </div>
       </div>
 
-      <button className="hamburger" id="hamburger" onClick={() => hamburgerMenuClickHandler() }>
+      <button
+        className="hamburger"
+        id="hamburger"
+        onClick={() => hamburgerMenuClickHandler()}
+      >
         <span className="material-icons">menu</span>
       </button>
 
