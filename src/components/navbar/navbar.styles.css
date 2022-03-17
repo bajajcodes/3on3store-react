@@ -1,6 +1,6 @@
 /* reset component library styles */
 .navbar {
-    padding: 0 var(--size-5);
+    padding: 0 var(--size-9) 0 var(--size-5);
     border-bottom: var(--size-1) solid;
     flex-wrap: nowrap;
 }
@@ -95,7 +95,6 @@
     color: var(--white);
     border-radius: var(--size-3);
     border: 0.0625rem solid var(--black);
-    /* padding: var(--size-7) var(--size-9); */
     text-align: center;
     text-transform: uppercase;
 }
