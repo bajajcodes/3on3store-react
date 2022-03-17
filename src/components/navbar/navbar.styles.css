@@ -1,0 +1,160 @@
+/* reset component library styles */
+.navbar {
+    padding: 0 var(--size-5);
+    border-bottom: var(--size-1) solid;
+    flex-wrap: nowrap;
+}
+
+.navbar .nav-item {
+    margin: 0;
+}
+
+.input {
+    padding: 0;
+    border: 0;
+    cursor: initial;
+}
+
+.input:focus,
+.input:active,
+.input:focus-visible {
+    border: 0;
+    box-shadow: none;
+}
+
+.input-group-icon {
+    background: white;
+    border: 0;
+    font-size: var(--size-10);
+}
+
+.btn-secondary {
+    font-weight: var(--weight-bold);
+}
+
+.btn-secondary:hover {
+    background-color: var(--logo-color);
+}
+
+.nav-item .nav-link {
+    padding: 0 var(--size-5);
+}
+
+/* search input */
+.search-box {
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: 30%;
+    padding-left: var(--size-10);
+    border: 1px solid;
+}
+
+/* search button */
+.search-box button {
+    border: 0;
+    border-left: 0.065px solid;
+    cursor: pointer;
+}
+
+/* header navigation items with icon and text */
+.nav-link.dflex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav-link.nav-link-with-hover-reset:hover {
+    color: var(--black);
+    text-decoration: none;
+    font-weight: var(--weight-regular);
+    transform: scale(1.2);
+}
+
+.nav-link.dflex .material-icons-outlined,
+.nav-link.dflex .material-icons {
+    font-size: var(--size-9);
+}
+
+.nav-link.dflex .material-icons-txt {
+    font-size: calc(var(--size-7)*1.1);
+}
+
+.active-nav-item {
+    font-weight: 900;
+    transform: scale(1.2);
+}
+
+.active-nav-item>.material-icons,
+.active-nav-item>.material-icons-outlined {
+    font-weight: 900;
+}
+
+.btn-secondary {
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: var(--size-3);
+    border: 0.0625rem solid var(--black);
+    /* padding: var(--size-7) var(--size-9); */
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+    background-color: var(--logo-color);
+    font-weight: var(--weight-bold);
+    box-shadow: var(--size-3) var(--size-3) 0 var(--black);
+}
+
+.bg-grey {
+    background-color: var(--btn-secondary);
+}
+
+/* media-queries */
+@media (max-width:768px) {
+
+    /* hide store name */
+    .estore-name {
+        display: none;
+    }
+
+    /* header navbar*/
+    .navbar-nav {
+        position: absolute;
+        top: 52px;
+        left: 0;
+        z-index: 5;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 20px;
+    }
+
+    .navbar-nav {
+        align-items: flex-start;
+    }
+
+    .nav-link.dflex>span:first-child {
+        display: none;
+    }
+
+    .nav-item .nav-link {
+        margin: var(--size-9) 0;
+    }
+
+    .nav-link.dflex .material-icons-txt {
+        font-size: var(--size-10);
+    }
+
+    .nav-item .nav-link:hover {
+        color: var(--logo-color);
+        text-decoration: underline;
+        font-weight: var(--weight-bold);
+    }
+
+    /* search box minimum width increase by 20 percent */
+    .search-box {
+        flex-basis: 50%;
+    }
+
+}
