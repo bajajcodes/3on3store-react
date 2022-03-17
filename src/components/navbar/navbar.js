@@ -2,13 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 
-// temporary fix will be replaced images context to avoid prop drilling
-const logoImage = {
-  logoPath: "/assets/logo/logo.svg",
-  logoDesc: "Logo for 3 on 3 store",
-};
-
-function Navbar() {
+function Navbar({ logoImage }) {
   const [toggleShowNavbarNav, setToggleShowNavbarNav] = useState("");
   const { logoPath, logoDesc } = logoImage;
 
@@ -60,7 +54,10 @@ function Navbar() {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/profile" className="nav-link nav-link-with-hover-reset dflex">
+          <Link
+            to="/profile"
+            className="nav-link nav-link-with-hover-reset dflex"
+          >
             <span className="material-icons">person_outline</span>
             <span className="material-icons-txt">Profile</span>
           </Link>
