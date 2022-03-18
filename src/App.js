@@ -1,9 +1,12 @@
+import { Login, Signup } from "./pages/auth/auth";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <Routes>
+      <Route element={<Login />} />
+      <Route element={<Signup />} />
+    </Routes>
   );
 }
 
