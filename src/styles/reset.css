@@ -1,0 +1,9 @@
+:root {
+    --grey-color: #f4f4f4;
+    --dark-grey-color: #c4c2c2;
+    --aside-beautify-color:#fffdfdfb;
+}
+
+body{
+    font-family:'Open Sans', 'Helvetica Neue', sans-serif;
+}
