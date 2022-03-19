@@ -8,7 +8,7 @@ const data = {
     inititalSlide: 0,
   },
   logoImage: {
-    logoPath: "/assets/logo/logo.svg",
+    logoPath: `${process.env.PUBLIC_URL}/assets/logo/logo.svg`, 
     logoDesc: "Logo for 3 on 3 store",
   },
 };
