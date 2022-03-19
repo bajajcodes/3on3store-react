@@ -1,6 +1,6 @@
 const data = {
     logoImage: {
-      logoPath: "/assets/logo/logo.svg",
+      logoPath: `${process.env.PUBLIC_URL}/assets/logo/logo.svg`, 
       logoDesc: "Logo for 3 on 3 store",
     },
     ecommerceName : "3 on 3 Store",
@@ -18,11 +18,11 @@ const data = {
     },
     asideImages:{
         asideLoginImage:{
-            imagePath: "/images/login-cuate_black.png",
+            imagePath: `${process.env.PUBLIC_URL}/images/login-cuate_black.png`, 
             imageDesc: "Login visualizer",
         },
         asideSignupImage:{
-            imagePath: "/images/Signup-cuate_black.png",
+            imagePath: `${process.env.PUBLIC_URL}/images/Signup-cuate_black.png`,
             imageDesc: "Signup visualizer",
         }
     }

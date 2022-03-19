@@ -8,7 +8,7 @@ function AuthHeader({headerInfo, logoImage, ecommerceName}){
         <nav className="nav">
             <div className="navbar-brand">
                 <Link to="/" className="nav-link">
-                    <img src={`${process.env.PUBLIC_URL}${logoPath}`} alt={logoDesc}  className="d-inline-block align-text-top logo-img" />
+                    <img src={logoPath} alt={logoDesc}  className="d-inline-block align-text-top logo-img" />
                     <span className="estore-name">{ecommerceName}</span>
                 </Link>
             </div>
