@@ -1,6 +1,6 @@
 
 /* default single column layout */
-.App {
+.home {
     display: grid;
     grid-template-areas: "header"
         "main"
@@ -89,7 +89,7 @@
 @media (min-width:768px) {
 
     /* three-column layout */
-    .App {
+    .home {
         grid-template-areas: "header header header"
             "main main main"
             "footer footer footer";
