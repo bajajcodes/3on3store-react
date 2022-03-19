@@ -1,8 +1,6 @@
-import { Navbar } from "../navbar/navbar.js";
-import { data } from "../../data.js";
+import { Navbar } from "../navbar/navbar";
 
-function Header() {
-  const { logoImage } = data;
+function Header({logoImage}) {
   return (
     <header className="header">
       <Navbar logoImage={logoImage} />

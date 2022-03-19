@@ -1,10 +1,12 @@
-import { Home } from "./pages/home/home.js";
-import "./styles/reset.css";
-import "./App.css";
+import { Home } from "pages";
+import "styles/reset.css";
+import "App.css";
+import {data} from "data";
 
 function App() {
+  const {logoImage, slides} = data;
   return (
-    <Home />
+    <Home logoImage={logoImage} slides={slides} />
   );
 }
 

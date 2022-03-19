@@ -1,14 +1,13 @@
-import { Header } from "../../components/header/header.js";
-import { Main } from "./main/main.js";
-import { Footer } from "../../components/footer/footer.js";
+import { Header, Footer } from "components/";
+import { Main } from "./main/main";
 import "./home.css";
 
-function Home() {
+function Home({logoImage, slides}) {
   return (
     <div className="home">
-      <Header />
-      <Main />
-      <Footer />
+      <Header logoImage={logoImage}/>
+      <Main slides={slides}/>
+      <Footer logoImage={logoImage}/>
     </div>
   );
 }

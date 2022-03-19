@@ -1,9 +1,8 @@
 import "./footer.styles.css";
 import { Link } from "react-router-dom";
-import { data } from "../../data.js";
 
-function Footer() {
-  const { logoPath, logoDesc } = data.logoImage;
+function Footer({logoImage}) {
+  const { logoPath, logoDesc } = logoImage;
 
   return (
     <footer className="footer">
