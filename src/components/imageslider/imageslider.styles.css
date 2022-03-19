@@ -10,22 +10,22 @@
     cursor: pointer;
     position: absolute;
     top: 50%;
-    margin-top: -35px;
+    margin-top: calc(-var(--size-14));
     width: 0;
     height: 0;
     border-style: solid;
 }
 
 #arrow-left {
-    border-width: 20px 30px 20px 0;
+    border-width: var(--size-10) var(--size-12) var(--size-10) 0;
     border-color: transparent var(--logo-color) transparent transparent;
     left: 0;
-    margin-left: 20px;
+    margin-left: var(--size-10);
 }
 
 #arrow-right {
-    border-width: 20px 0 20px 30px;
+    border-width: var(--size-10) 0 var(--size-10) var(--size-12);
     border-color: transparent transparent transparent var(--logo-color);
     right: 50%;
-    margin-right: 20px;
+    margin-right: var(--size-10);
 }
