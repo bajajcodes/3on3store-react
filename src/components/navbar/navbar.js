@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 
 function Navbar({ logoImage }) {
-  const [toggleShowNavbarNav, setToggleShowNavbarNav] = useState("");
+  const [toggleNavbarNav, setToggleNavbarNav] = useState("");
   const { logoPath, logoDesc } = logoImage;
 
   function hamburgerMenuClickHandler() {
-    setToggleShowNavbarNav((prevShow) => (prevShow ? "" : "show"));
+    setToggleNavbarNav((prevShow) => (prevShow ? "" : "show"));
   }
 
   return (
@@ -15,7 +15,7 @@ function Navbar({ logoImage }) {
       <div className="navbar-brand">
         <Link className="nav-link" to="/">
           <img
-            src={`${process.env.PUBLIC_URL}${logoPath}`}
+            src={logoPath}
             alt={logoDesc}
             width="40"
             height="40"
@@ -42,7 +42,7 @@ function Navbar({ logoImage }) {
         <span className="material-icons">menu</span>
       </button>
 
-      <ul className={`navbar-nav ${toggleShowNavbarNav}`} id="navbar-nav">
+      <ul className={`navbar-nav ${toggleNavbarNav}`} id="navbar-nav">
         <li className="nav-item">
           <Link to="/login" className="nav-link">
             <button className="btn btn-secondary bg-grey">Login</button>
