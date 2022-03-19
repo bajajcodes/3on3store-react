@@ -5,14 +5,20 @@ import "./imageslider.styles.css";
 function ImageSlider({ sliderImages, inititalSlide }) {
   const [current, setCurrent] = useState(inititalSlide);
 
+  function evaluateRightSlide(rightSlideCount){
+      return rightSlideCount === sliderImages.length ? 0 : rightSlideCount;
+  }
+
+  function evaluateLeftSlide(leftSlideCount){
+    return leftSlideCount < 0 ? sliderImages.length - 1 : leftSlideCount;
+  }
+
   function slideRight() {
-    setCurrent((current) => ++current);
-    setCurrent((current) => (current === sliderImages.length ? 0 : current));
+    setCurrent((current) => evaluateRightSlide(current + 1));
   }
 
   function slideLeft() {
-    setCurrent((current) => --current);
-    setCurrent((current) => (current < 0 ? sliderImages.length - 1 : current));
+    setCurrent((current) => evaluateLeftSlide(current - 1));
   }
 
   return (
