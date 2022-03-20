@@ -11,6 +11,7 @@ const data = {
     logoPath: `${process.env.PUBLIC_URL}/assets/logo/logo.svg`, 
     logoDesc: "Logo for 3 on 3 store",
   },
+  starColor:"#38cfea",
 };
 
 export { data };
