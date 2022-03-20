@@ -2,6 +2,7 @@
     border-top: var(--size-1) solid;
     display: flex;
     padding: var(--size-9);
+    background-color: var(--white);
   }
 
   .footer-brand, .footer-writer{
