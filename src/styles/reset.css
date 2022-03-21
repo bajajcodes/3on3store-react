@@ -4,6 +4,7 @@
     --aside-beautify-color:#fffdfdfb;
 }
 
-.home{
+.home,
+  .auth{
     font-family:'Open Sans', 'Helvetica Neue', sans-serif;
 }
