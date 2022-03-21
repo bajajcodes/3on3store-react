@@ -1,0 +1,31 @@
+/* single-column layout */
+.products-wrapper  {
+    display: grid;
+    grid-template-areas: "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+}
+
+.content-title{
+    text-align: center;
+}
+
+@media (min-width:768px) {
+
+    /* three-column layout */
+    .products-wrapper  {
+        grid-template-areas: "header header header"
+            "main main main"
+            "footer footer footer";
+        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .cards-container .card{
+        margin: 0;
+    }
+
+}
