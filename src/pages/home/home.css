@@ -1,0 +1,121 @@
+
+/* default single column layout */
+.home {
+    display: grid;
+    grid-template-areas: "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* header */
+.header {
+    grid-area: header;
+}
+
+/* main-content */
+.main {
+    display: flex;
+    flex-direction: column;
+    grid-area: main;
+    background-color: var(--grey-color);
+}
+
+/* main-content text-content */
+.images-container {
+    display: none;
+}
+
+.column-padding {
+    padding: 2vw 4vw;
+}
+
+.content-grid {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-xxl {
+    text-align: center;
+}
+
+.text-md {
+    font-size: 1.5rem;
+    line-height: 1.3;
+}
+
+.text-md {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    font-size: calc(var(--size-10) + 0.5vw);
+}
+
+.text-md .dflex {
+    flex-direction: column;
+}
+
+.btn-secondary {
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: var(--size-3);
+    border: 0.0625rem solid var(--black);
+    /* padding: var(--size-7) var(--size-9); */
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+    background-color: var(--logo-color);
+    font-weight: var(--weight-bold);
+    box-shadow: var(--size-3) var(--size-3) 0 var(--black);
+}
+
+.bg-grey {
+    background-color: var(--btn-secondary);
+}
+
+
+/* footer */
+.footer {
+    grid-area: footer;
+}
+
+/* media-queries */
+@media (min-width:768px) {
+
+    /* three-column layout */
+    .home {
+        grid-template-areas: "header header header"
+            "main main main"
+            "footer footer footer";
+        grid-template-columns: 1fr 4fr 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        min-height: max-content;
+    }
+
+    .images-container {
+        display: initial;
+        border-right: 1px solid;
+    }
+
+    .images-container,
+    .column-padding {
+        padding: 0;
+    }
+
+    .home-button {
+        margin: 0;
+    }
+
+}

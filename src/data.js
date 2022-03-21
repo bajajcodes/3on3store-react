@@ -16,6 +16,14 @@ const data = {
             authMessage : "Join over 100,000 people who learned to play the game, read actionable items and get fitter on 3 on Store.",
         }
     },
+    slides: {
+    sliderImages: [
+      `${process.env.PUBLIC_URL}/images/Hangout-rafiki.svg`,
+      `${process.env.PUBLIC_URL}/images/Workout-rafiki.svg`,
+      `${process.env.PUBLIC_URL}/images/Ebook-pana.svg`,
+    ],
+    inititalSlide: 0,
+  },
     asideImages:{
         asideLoginImage:{
             imagePath: `${process.env.PUBLIC_URL}/images/login-cuate_black.png`, 
