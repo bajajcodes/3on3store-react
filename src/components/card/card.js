@@ -1,10 +1,10 @@
 import { useState } from "react";
 import "./card.styles.css";
 
-function Card({product}){
+function Card({product, productInWishlist, productInCart}){
     const {title, price, description, image} = product;
-    const [inCart, setInCart] = useState(false);
-    const [inWishlist, setInWishlist] = useState(false);
+    const [inCart, setInCart] = useState(productInCart || false);
+    const [inWishlist, setInWishlist] = useState(productInWishlist  || false);
 
     function addToCartHandler(){
         setInCart(prev => !prev);
