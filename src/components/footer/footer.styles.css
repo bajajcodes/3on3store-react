@@ -1,18 +1,19 @@
 .footer {
-    border-top: var(--size-1) solid;
-    display: flex;
-    padding: var(--size-9);
-    background-color: var(--white);
-  }
+  border-top: var(--size-1) solid;
+  display: flex;
+  padding: var(--size-9);
+  background-color: var(--white);
+}
 
-  .footer-brand, .footer-writer{
-    display: flex;
-    flex-direction: column;
-    flex: 1 1;
-    flex-wrap: wrap;
-    word-wrap: break-word;
-  }
+.footer-brand,
+.footer-writer {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+}
 
-  .footer-writer {
-    align-items: flex-end;
-  }
+.footer-writer {
+  align-items: flex-end;
+}
