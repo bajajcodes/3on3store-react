@@ -23,7 +23,6 @@ const data = {
       `${process.env.PUBLIC_URL}/images/Ebook-pana.svg`,
     ],
     inititalSlide: 0,
-  },
     asideImages:{
         asideLoginImage:{
             imagePath: `${process.env.PUBLIC_URL}/images/login-cuate_black.png`, 
@@ -33,7 +32,10 @@ const data = {
             imagePath: `${process.env.PUBLIC_URL}/images/Signup-cuate_black.png`,
             imageDesc: "Signup visualizer",
         }
-    }
+    },
+        starColor:"#38cfea",
+  },
+
   };
   
   export { data };
