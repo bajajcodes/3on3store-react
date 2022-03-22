@@ -1,9 +1,9 @@
 import { Card } from "components";
-import { products } from "../dump";
+import { products } from "dump";
 
 function CardContainer() {
   return (
-    <div className="cards-container">
+    <div className="products-cards-container">
       {products &&
         products.map((product, index) => (
           <Card product={product} key={index} />

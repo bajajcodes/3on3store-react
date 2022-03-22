@@ -1,10 +1,8 @@
-import { asideImages } from "data";
-
-function AuthAsideImage() {
-  const { imagePath, imageDesc } = asideImages.asideLoginImage;
+function AuthAsideImage({ asideImage }) {
+  const { imagePath, imageDesc } = asideImage;
   return (
-    <aside className="aside">
-      <img src={imagePath} alt={imageDesc} />
+    <aside className="auth-aside">
+      <img src={imagePath} alt={imageDesc} className="auth-image" />
     </aside>
   );
 }

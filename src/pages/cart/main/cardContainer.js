@@ -1,5 +1,5 @@
 import { Card } from "components";
-import {products} from "../dump";
+import { products } from "dump";
 
 function CardContainer() {
   return (

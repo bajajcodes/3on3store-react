@@ -37,21 +37,21 @@ function AuthSignup() {
   }
 
   return (
-    <main className="main">
+    <main className="auth-main">
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Email</span>
-          <input type="text" className="input" />
+          <input type="text" className="auth-input" />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">First Name</span>
-          <input type="text" className="input" />
+          <input type="text" className="auth-input" />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Last Name</span>
-          <input type="text" className="input" />
+          <input type="text" className="auth-input" />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
@@ -67,7 +67,7 @@ function AuthSignup() {
               </span>
             </Link>
           </div>
-          <input type={passwordInput.type} className="input" />
+          <input type={passwordInput.type} className="auth-input" />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
@@ -83,7 +83,7 @@ function AuthSignup() {
               </span>
             </Link>
           </div>
-          <input type={confirmPasswordInput.type} className="input" />
+          <input type={confirmPasswordInput.type} className="auth-input" />
         </div>
 
         <button className="btn btn-secondary"> Signup </button>

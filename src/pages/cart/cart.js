@@ -6,11 +6,11 @@ import "./cart.styles.css";
 
 function Cart() {
   return (
-    <div className="products-wrapper">
-      <Header/>
+    <div className="cart products-wrapper">
+      <Header />
       <Aside />
-      <Main/>
-      <Footer/>
+      <Main />
+      <Footer />
     </div>
   );
 }

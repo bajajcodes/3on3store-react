@@ -8,7 +8,7 @@ function Products() {
     <div className="products-wrapper">
       <Header />
       <Aside />
-      <Main  />
+      <Main />
       <Footer />
     </div>
   );

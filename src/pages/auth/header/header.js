@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { headerInfo, logoImage, ecommerceName } from "data";
+import { logoImage, ecommerceName } from "data";
 
-function AuthHeader() {
-  const { authTo, authToName, authMessage } = headerInfo;
+function AuthHeader({ authInfo }) {
+  const { authTo, authToName, authMessage } = authInfo;
   const { logoPath, logoDesc } = logoImage;
   return (
-    <header className="header">
+    <header className="auth-header">
       <nav className="nav">
         <div className="navbar-brand">
           <Link to="/" className="nav-link">

@@ -1,5 +1,5 @@
 /* single-column layout */
-.products-wrapper {
+.cart.products-wrapper {
   display: grid;
   grid-template-areas:
     "header"
@@ -15,14 +15,14 @@
   background-color: var(--white);
 }
 
-.main {
+.cart .main {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 /* card-container with fixed height */
-.cards-container {
+.cart .cards-container {
   min-height: max-content;
   max-height: 80vh;
   overflow-y: scroll;
@@ -59,7 +59,7 @@
   justify-content: space-between;
 }
 
-.aside-navbar {
+.cart .aside-navbar {
   transform: translateX(0);
   padding: 0;
   padding-bottom: 10px;
@@ -75,23 +75,23 @@
   justify-content: space-between;
 }
 
-.aside-navbar .card-w-100 .btn-secondary {
+.cart .aside-navbar .card-w-100 .btn-secondary {
   margin: 0 var(--size-6);
 }
 
 /* expanding the buttons into column direction*/
-.card-action-btns.align-center-and-space-between,
-.btn-secondary.align-center-and-space-between {
+/* ,.cart .btn-secondary.align-center-and-space-between */
+.cart .card-action-btns.align-center-and-space-between {
   flex-wrap: wrap;
   justify-content: center;
   row-gap: var(--size-6);
 }
 
-.card-action-btns.align-center-and-space-between > button {
+.cart .card-action-btns.align-center-and-space-between > button {
   width: 100%;
 }
 
-.qunatity-action {
+.cart .qunatity-action {
   justify-content: space-around;
   width: 100%;
 }
@@ -104,7 +104,7 @@
 
 @media (min-width: 768px) {
   /* three-column layout */
-  .products-wrapper {
+  .cart.products-wrapper {
     grid-template-areas:
       "header header header"
       "main main nav"
@@ -118,15 +118,15 @@
     box-shadow: none;
   }
 
-  .aside-navbar {
+  .cart .aside-navbar {
     box-shadow: -4px 3px;
   }
 
-  .cards-container {
+  .cart .cards-container {
     column-gap: var(--size-7);
   }
 
-  .cards-container {
+  .cart .cards-container {
     width: 40vw;
   }
 }

@@ -5,10 +5,10 @@ import "./wishlist.css";
 
 function Wishlist() {
   return (
-    <div className="products-wrapper">
-      <Header/>
+    <div className="wishlist products-wrapper">
+      <Header />
       <Main />
-      <Footer/>
+      <Footer />
     </div>
   );
 }

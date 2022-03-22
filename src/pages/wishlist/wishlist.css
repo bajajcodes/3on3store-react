@@ -1,5 +1,5 @@
 /* single-column layout */
-.products-wrapper {
+.wishlist.products-wrapper {
   display: grid;
   grid-template-areas:
     "header"
@@ -16,7 +16,7 @@
 
 @media (min-width: 768px) {
   /* three-column layout */
-  .products-wrapper {
+  .wishlist.products-wrapper {
     grid-template-areas:
       "header header header"
       "main main main"
