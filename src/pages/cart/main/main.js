@@ -1,11 +1,11 @@
 import { CardContainer } from "./cardContainer";
 
-function Main({ products }) {
+function Main() {
   return (
     <main className="main">
       <h2 className="text-xl content-title">My Cart</h2>
 
-      <CardContainer products={products} />
+      <CardContainer />
     </main>
   );
 }

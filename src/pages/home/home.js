@@ -2,12 +2,12 @@ import { Header, Footer } from "components/";
 import { Main } from "./main/main";
 import "./home.css";
 
-function Home({logoImage, slides}) {
+function Home() {
   return (
     <div className="home">
-      <Header logoImage={logoImage}/>
-      <Main slides={slides}/>
-      <Footer logoImage={logoImage}/>
+      <Header />
+      <Main />
+      <Footer />
     </div>
   );
 }

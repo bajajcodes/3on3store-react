@@ -1,7 +1,8 @@
 import { ImageSlider } from "components/imageslider/imageslider";
 import { Link } from "react-router-dom";
+import { slides } from "data";
 
-function Main({slides}) {
+function Main() {
   const { sliderImages, inititalSlide } = slides;
   return (
     <main className="main">

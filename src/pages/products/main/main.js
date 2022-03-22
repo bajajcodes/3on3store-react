@@ -1,9 +1,9 @@
 import { CardContainer } from "./cardContainer";
 
-function Main({ products }) {
+function Main() {
   return (
     <main className="main">
-      <CardContainer products={products} />
+      <CardContainer/>
     </main>
   );
 }

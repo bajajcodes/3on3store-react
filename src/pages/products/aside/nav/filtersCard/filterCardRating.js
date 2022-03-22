@@ -1,8 +1,7 @@
 import { StarRating } from "components/index";
-import { data } from "data";
+import { starColor } from "data";
 
 function FilterRating() {
-  const { starColor } = data;
   return (
     <div className="card card-with-no-border">
       <div className="card-body">

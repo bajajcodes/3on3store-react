@@ -1,6 +1,7 @@
 import { Card } from "components";
+import {products} from "../dump";
 
-function CardContainer({ products }) {
+function CardContainer() {
   return (
     <div className="cards-container">
       {products &&

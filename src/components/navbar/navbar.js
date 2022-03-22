@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.styles.css";
+import { logoImage } from "data";
 
-function Navbar({ logoImage }) {
+function Navbar() {
   const [toggleNavbarNav, setToggleNavbarNav] = useState("");
   const { logoPath, logoDesc } = logoImage;
 

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
+import { headerInfo, logoImage, ecommerceName } from "data";
 
-function AuthHeader({ headerInfo, logoImage, ecommerceName }) {
+function AuthHeader() {
   const { authTo, authToName, authMessage } = headerInfo;
   const { logoPath, logoDesc } = logoImage;
   return (

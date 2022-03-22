@@ -1,9 +1,9 @@
 import { Navbar } from "../navbar/navbar";
 
-function Header({ logoImage }) {
+function Header() {
   return (
     <header className="header">
-      <Navbar logoImage={logoImage} />
+      <Navbar/>
     </header>
   );
 }

@@ -2,19 +2,14 @@ import "./auth.css";
 import { AuthHeader } from "./header/header.js";
 import { AuthAsideImage } from "./aside/aside.js";
 import { AuthLogin, AuthSignup } from "./main/main.js";
-import { data } from "data";
 
 // TODO: make these components import dynamic
 function Login() {
   return (
     <div className="auth">
-      <AuthHeader
-        headerInfo={data.headerInfo.login}
-        logoImage={data.logoImage}
-        ecommerceName={data.ecommerceName}
-      />
+      <AuthHeader/>
       <AuthLogin />
-      <AuthAsideImage asideImage={data.asideImages.asideLoginImage} />
+      <AuthAsideImage/>
     </div>
   );
 }
@@ -22,13 +17,9 @@ function Login() {
 function Signup() {
   return (
     <div className="auth">
-      <AuthHeader
-        headerInfo={data.headerInfo.signup}
-        logoImage={data.logoImage}
-        ecommerceName={data.ecommerceName}
-      />
+      <AuthHeader />
       <AuthSignup />
-      <AuthAsideImage asideImage={data.asideImages.asideSignupImage} />
+      <AuthAsideImage />
     </div>
   );
 }

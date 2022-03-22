@@ -1,16 +1,15 @@
 import { Header, Footer } from "components/index";
 import { Aside } from "./aside/aside";
 import { Main } from "./main/main";
-import { products } from "./dump";
 import "./products.css";
 
-function Products({ logoImage }) {
+function Products() {
   return (
     <div className="products-wrapper">
-      <Header logoImage={logoImage} />
+      <Header />
       <Aside />
-      <Main products={products} />
-      <Footer logoImage={logoImage} />
+      <Main  />
+      <Footer />
     </div>
   );
 }
