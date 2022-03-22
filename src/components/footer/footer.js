@@ -1,7 +1,7 @@
 import "./footer.styles.css";
 import { Link } from "react-router-dom";
 
-function Footer({logoImage}) {
+function Footer({ logoImage }) {
   const { logoPath, logoDesc } = logoImage;
 
   return (
@@ -21,7 +21,8 @@ function Footer({logoImage}) {
         </div>
         <p>
           Get what you need to live a life less ordinary, become 3 on 3 and live
-          a healthy life, make money and game the system. 3 on 3 Store is subject to truth risk and persuasive skill.
+          a healthy life, make money and game the system. 3 on 3 Store is
+          subject to truth risk and persuasive skill.
         </p>
       </div>
       <h2 className="footer-writer">
