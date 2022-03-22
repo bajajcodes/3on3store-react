@@ -5,11 +5,11 @@ import "./imageslider.styles.css";
 function ImageSlider({ sliderImages, inititalSlide }) {
   const [current, setCurrent] = useState(inititalSlide);
 
-  function evaluateRightSlide(rightSlideCount){
-      return rightSlideCount === sliderImages.length ? 0 : rightSlideCount;
+  function evaluateRightSlide(rightSlideCount) {
+    return rightSlideCount === sliderImages.length ? 0 : rightSlideCount;
   }
 
-  function evaluateLeftSlide(leftSlideCount){
+  function evaluateLeftSlide(leftSlideCount) {
     return leftSlideCount < 0 ? sliderImages.length - 1 : leftSlideCount;
   }
 
@@ -26,7 +26,7 @@ function ImageSlider({ sliderImages, inititalSlide }) {
       <div id="arrow-left" className="arrow" onClick={() => slideLeft()}></div>
 
       {sliderImages.map((source, index) => (
-        <Link to="/products"  key={index}>
+        <Link to="/products" key={index}>
           <div
             className="slide"
             style={{

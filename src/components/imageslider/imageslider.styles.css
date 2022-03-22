@@ -1,31 +1,31 @@
 .slide {
-    height: 80vh;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    cursor: pointer;
+  height: 80vh;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
 }
 
 .arrow {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    margin-top: calc(-var(--size-14));
-    width: 0;
-    height: 0;
-    border-style: solid;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  margin-top: calc(-var(--size-14));
+  width: 0;
+  height: 0;
+  border-style: solid;
 }
 
 #arrow-left {
-    border-width: var(--size-10) var(--size-12) var(--size-10) 0;
-    border-color: transparent var(--logo-color) transparent transparent;
-    left: 0;
-    margin-left: var(--size-10);
+  border-width: var(--size-10) var(--size-12) var(--size-10) 0;
+  border-color: transparent var(--logo-color) transparent transparent;
+  left: 0;
+  margin-left: var(--size-10);
 }
 
 #arrow-right {
-    border-width: var(--size-10) 0 var(--size-10) var(--size-12);
-    border-color: transparent transparent transparent var(--logo-color);
-    right: 50%;
-    margin-right: var(--size-10);
+  border-width: var(--size-10) 0 var(--size-10) var(--size-12);
+  border-color: transparent transparent transparent var(--logo-color);
+  right: 50%;
+  margin-right: var(--size-10);
 }
