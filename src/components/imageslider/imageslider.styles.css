@@ -10,7 +10,7 @@
   cursor: pointer;
   position: absolute;
   top: 50%;
-  margin-top: calc(-var(--size-14));
+  margin-top: var(--size-14);
   width: 0;
   height: 0;
   border-style: solid;
