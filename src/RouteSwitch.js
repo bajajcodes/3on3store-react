@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Login, Signup, Products, Wishlist, Cart } from "pages";
+import { Home, Login, Signup, Products, Wishlist, Cart} from "pages";
 
 function RouteSwitch() {
   return (
@@ -11,6 +11,7 @@ function RouteSwitch() {
         <Route path="/products" element={<Products />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/profile" element={<Home />} />
       </Routes>
     </Router>
   );
