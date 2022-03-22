@@ -86,10 +86,7 @@ function AuthSignup() {
           <input type={confirmPasswordInput.type} className="input" />
         </div>
 
-        <button className="btn btn-secondary">
-          {" "}
-          Signup{" "}
-        </button>
+        <button className="btn btn-secondary"> Signup </button>
       </form>
     </main>
   );

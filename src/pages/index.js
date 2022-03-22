@@ -1,4 +1,4 @@
-export {Cart} from "./cart/cart";
-export {Products} from "./products/products";
-export {Login, Signup} from "./auth/auth";
-export {Home} from "./home/home";
+export { Cart } from "./cart/cart";
+export { Products } from "./products/products";
+export { Login, Signup } from "./auth/auth";
+export { Home } from "./home/home";
