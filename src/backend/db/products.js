@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 const socialSkillsProducts = [
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description: "The Mind, so beautiful, yet so vague.",
     image: "https://public-files.gumroad.com/z1f9viaptun0aqv8u0ccjftlhg50",
     price: "15",
@@ -18,7 +18,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "Social anxiety is the silent problem that we humans deal with. But that is not the only problem.",
     image: "https://public-files.gumroad.com/whs7772uphkxddf4j65s6va7jntg",
@@ -28,7 +28,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "The ability to write creatively is a cornerstone habit that spills over to other parts of your world.",
     image: "https://public-files.gumroad.com/lz6tek3vmjcvhybxrb1z3qzdxxon",
@@ -38,7 +38,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description: "Speech Anxiety is ranked as the #1 fear on the planet.",
     image: "https://public-files.gumroad.com/s6dfiekh3xuf13cj5srekqyevxfx",
     price: "25",
@@ -47,7 +47,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "Speak Easy is a framework to help anyone who is struggling with communication to learn the 3 A's. They will learn how to be Articulate, Assertive, and Audacious when presenting their message and interacting with others.",
     image: "https://public-files.gumroad.com/ya1ijruv9xkkkg97rxgwamuy4srg",
@@ -58,7 +58,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "Amoral, cunning, ruthless, and instructive, this piercing work distills 3,000 years of the history of power into 48 well-explicated laws. This bold volume outlines the laws of power in their unvarnished essence, synthesizing the philosophies of Machiavelli, Sun Tzu, Carl von Clausewitz, and other infamous strategists. The 48 Laws of Power will fascinate any listener interested in gaining, observing, or defending against ultimate control.",
     image: "https://m.media-amazon.com/images/I/41TcKQv7hZL.jpg",
@@ -68,7 +68,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "This is a collection of short stories to help you level up up your communication skills.",
     image: "https://public-files.gumroad.com/zhd1lzm0ttwbqn4osa9msggxed1i",
@@ -79,7 +79,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "The ArmaniTalks Bundle:This bundle pack is your starter kit to build your communication skills & level up your confidence. You will take an in-depth look into the world of soft skills to learn more about the mind, public speaking, social skills & storytelling.",
     image: "https://public-files.gumroad.com/e9oq8pdd4zo30hzpeaced09f3v4w",
@@ -90,7 +90,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "Are you currently struggling to express your ideas with clarity? In your mind, the ideas make sense. But by the time you have to articulate your points, that's when the message becomes messy.",
     image: "https://public-files.gumroad.com/11phi6qj97hf04z8d4a96ajmqdv0",
@@ -100,7 +100,7 @@ const socialSkillsProducts = [
   },
   {
     _id: uuid(),
-    categoryName: "soical skills",
+    categoryName: "social skills",
     description:
       "The Art and Science of Storytelling is a practical book that will teach you how to tell better stories in conversations, business meetings, in leadership positions and for brand building. The Information Age has ended, and the Storytelling Age has begun. Enter the new era with the utmost confidence.",
     image: "https://m.media-amazon.com/images/I/41jqSKFjPEL.jpg",
@@ -175,7 +175,7 @@ const intelligenceProducts = [
     categoryName: "intelligence",
     description: "",
     image:
-      "https://www.amazon.in/Defining-Decade-Your-Twenties-Matter/dp/B07B3Y4JQR/ref=as_li_ss_tl?crid=1EL8R978J67X3&keywords=the+defining+decade&qid=1571825015&sprefix=the+defining+,aps,251&sr=8-1&linkCode=sl1&tag=lifemathmoney-21&linkId=c6f20d2d5f551b7f14ea25ea8f6acd09&language=en_IN",
+      "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1529594243l/40603783.jpg",
     price: "1279",
     rating: "1",
     title:

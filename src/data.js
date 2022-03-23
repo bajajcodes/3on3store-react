@@ -18,19 +18,29 @@ const authInfo = {
   signup: {
     authTo: "login",
     authToName: "Login",
-    authMessage: "Join over 100,000 people who learned to play the game, read actionable items and get fitter on 3 on Store.",
-      asideSignupImage: {
-        imagePath: `${process.env.PUBLIC_URL}/images/Signup-cuate_black.png`,
-        imageDesc: "Signup visualizer",
-      },
+    authMessage:
+      "Join over 100,000 people who learned to play the game, read actionable items and get fitter on 3 on Store.",
+    asideSignupImage: {
+      imagePath: `${process.env.PUBLIC_URL}/images/Signup-cuate_black.png`,
+      imageDesc: "Signup visualizer",
+    },
   },
 };
 
 const slides = {
   sliderImages: [
-    `${process.env.PUBLIC_URL}/images/Hangout-rafiki.svg`,
-    `${process.env.PUBLIC_URL}/images/Workout-rafiki.svg`,
-    `${process.env.PUBLIC_URL}/images/Ebook-pana.svg`,
+    {
+      source: `${process.env.PUBLIC_URL}/images/Hangout-rafiki.svg`,
+      category: "social skills",
+    },
+    {
+      source: `${process.env.PUBLIC_URL}/images/Workout-rafiki.svg`,
+      category: "strength",
+    },
+    {
+      source: `${process.env.PUBLIC_URL}/images/Ebook-pana.svg`,
+      category: "intelligence",
+    },
   ],
   inititalSlide: 0,
 };
