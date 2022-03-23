@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./card.styles.css";
 
 function Card({ product, productInWishlist, productInCart }) {
-  const { title, price, description, image, quantity } = product;
+  const { title, price, description, image } = product;
   const [inCart, setInCart] = useState(productInCart || false);
   const [inWishlist, setInWishlist] = useState(productInWishlist || false);
 
@@ -33,7 +33,7 @@ function Card({ product, productInWishlist, productInCart }) {
               <button className="btn btn-outline-secondary quantity-btn">
                 <span className="material-icons">add</span>
               </button>
-              <div>Quantity: {quantity}</div>
+              <div>Quantity: {0}</div>
 
               <button className="btn btn-outline-secondary quantity-btn">
                 <span className="material-icons">remove</span>
