@@ -1,4 +1,4 @@
-import { StarRating } from "components/index";
+import { StarRating } from "../../starRating/starRating";
 import { starColor } from "data";
 
 function FilterRating() {
