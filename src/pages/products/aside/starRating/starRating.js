@@ -7,7 +7,7 @@ function StarRating({ starColor }) {
 
   function hoverOver(event) {
     if (event && event.target && event.target.getAttribute("data-star-id")) {
-      let val = parseInt(event.target.getAttribute("data-star-id"), 10);
+      const val = parseInt(event.target.getAttribute("data-star-id"), 10);
       productsDispatch({ type: "RATING", rating: val });
     }
   }
