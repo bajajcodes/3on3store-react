@@ -216,7 +216,7 @@ const intelligenceProducts = [
 const strengthProducts = [
   {
     _id: uuid(),
-    categoryName: "intelligencestrength",
+    categoryName: "strength",
     description: "",
     image:
       "https://public-files.gumroad.com/variants/2l86o3kpajkfbffxp54uapgmz218/baaca0eb0e33dc4f9d45910b8c86623f0144cea0fe0c2093c546d17d535752eb",
