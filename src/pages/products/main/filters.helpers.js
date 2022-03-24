@@ -1,11 +1,11 @@
 
 function getSortedProducts(type, products) {
   if (type === "LOW_TO_HIGH") {
-    return [...products].sort((a, b) => a.price - b.price);
+    return [...products].sort((a, b) => parseInt(a.price,10) - parseInt(b.price,10));
   }
 
   if (type === "HIGH_TO_LOW") {
-    return [...products].sort((a, b) => b.price - a.price);
+    return [...products].sort((a, b) => parseInt(b.price,10) - parseInt(a.price,10));
   }
 
   return products;
@@ -75,7 +75,6 @@ function getFilteredProducts(products, productsState) {
     sortedProducts
   );
   const ratedProduts = getProductsWithThisRating(rating, categorizedProducts);
-
   return ratedProduts;
 }
 
