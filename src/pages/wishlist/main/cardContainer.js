@@ -3,7 +3,7 @@ import { useWishlistContext } from "context";
 
 function CardContainer() {
   const { wishlistState } = useWishlistContext();
-  const { wishlist } = wishlistState;
+  const { wishlist } = wishlistState; console.log({wishlist, [wishlist.length] : wishlist.length});
   return (
     <div className="cards-container">
       {wishlist &&

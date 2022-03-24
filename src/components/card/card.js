@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 import { useWishlistContext } from "context";
 
 function Card({ product, productInWishlist }) {
-  const { _id, title, price, description, image, rating } = product;
+  const { title, price, description, image, rating } = product;
   const [inCart, setInCart] = useState(false);
   const [inWishlist, setInWishlist] = useState(productInWishlist || false);
   const { pathname } = useLocation();
@@ -17,10 +17,10 @@ function Card({ product, productInWishlist }) {
 
   function wishlistHandler(product) {
     const type = inWishlist ? "REMOVE" : "ADD";
-    setInWishlist((inWishlistToggle) => !inWishlistToggle);
+    setInWishlist((inWishlistToggle) => !inWishlistToggle); console.log({inWishlist, type});
     wishlistDispatch({ type, product });
   }
-
+  console.log({inWishlist});
   return (
     <div className="card">
       <div>
