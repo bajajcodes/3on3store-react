@@ -1,21 +1,24 @@
 import { useState } from "react";
 import "./card.styles.css";
-import {Star} from "../star/star";
+import { Star } from "../star/star";
 import { useLocation } from "react-router-dom";
+import { useWishlistContext } from "context";
 
-
-function Card({ product, productInWishlist, productInCart }) {
-  const { title, price, description, image, rating } = product;
-  const [inCart, setInCart] = useState(productInCart || false);
+function Card({ product, productInWishlist }) {
+  const { _id, title, price, description, image, rating } = product;
+  const [inCart, setInCart] = useState(false);
   const [inWishlist, setInWishlist] = useState(productInWishlist || false);
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
+  const { wishlistDispatch } = useWishlistContext();
 
   function addToCartHandler() {
     setInCart((prev) => !prev);
   }
 
-  function addToWishlistHandler() {
-    setInWishlist((prev) => !prev);
+  function wishlistHandler(product) {
+    const type = inWishlist ? "REMOVE" : "ADD";
+    setInWishlist((inWishlistToggle) => !inWishlistToggle);
+    wishlistDispatch({ type, product });
   }
 
   return (
@@ -28,14 +31,20 @@ function Card({ product, productInWishlist, productInCart }) {
           <h5 className="card-title">{title}</h5>
           <h6 className="card-subtitle card-price">₹{price}</h6>
         </div>
-        <p className="card-text"><Star marked={true}/>({rating})</p>        
-        <span className=" card-img-dismiss-overlay" onClick={() => setInWishlist(prev => !prev)} style={{color:inWishlist ? "red" : "white"}}>
-        { "\u2764"}
+        <p className="card-text">
+          <Star marked={true} />({rating})
+        </p>
+        <span
+          className=" card-img-dismiss-overlay"
+          onClick={() => wishlistHandler(product)}
+          style={{ color: inWishlist ? "red" : "white" }}
+        >
+          {"\u2764"}
         </span>
       </div>
       <div className="card-footer">
         <div className="dflex card-action-btns align-center-and-space-between flex-wrap">
-          {inCart && pathname==="/cart" && (
+          {inCart && pathname === "/cart" && (
             <div className="dflex align-center-and-space-between qunatity-action">
               <button className="btn btn-outline-secondary quantity-btn">
                 <span className="material-icons">add</span>
@@ -54,7 +63,7 @@ function Card({ product, productInWishlist, productInCart }) {
             onClick={() => addToCartHandler()}
           >
             <span className="material-icons-outlined">shopping_cart</span>
-            {inCart && pathname==="/cart"  ? "Remove fom cart" : "Add to Cart"}
+            {inCart && pathname === "/cart" ? "Remove fom cart" : "Add to Cart"}
           </button>
         </div>
       </div>
