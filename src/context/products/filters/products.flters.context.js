@@ -7,9 +7,7 @@ import {
 const ProductsContext = createContext(null);
 
 function ProductProvider({ children }) {
-  const [productsState, productsDispatch] = useReducer(productsReducer, {
-    ...defaultFiltersState,
-  });
+  const [productsState, productsDispatch] = useReducer(productsReducer, {...defaultFiltersState});
   return (
     <ProductsContext.Provider value={{ productsState, productsDispatch }}>
       {children}

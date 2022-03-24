@@ -1,34 +1,16 @@
 import { Card } from "components";
-import { getFilteredProducts } from "./filters.helpers";
-import axios from "axios";
+import { getFilteredProducts, getProducts } from "./filters.helpers";
 import { useEffect, useState } from "react";
 import { useProducts } from "context";
-
-async function getProducts() {
-  try {
-    const response = await axios.get("/api/products");
-    const products = await response.data.products;
-    return products;
-  } catch (exception) {
-    console.error(exception);
-  }
-}
 
 function CardContainer() {
   const [products, setProducts] = useState([]);
   const { productsState } = useProducts();
 
   useEffect(async () => {
-    const produtsInLocalStroage = localStorage.getItem("products");
-
-    if (produtsInLocalStroage) {
-      const products = JSON.parse(produtsInLocalStroage);
-      setProducts(getFilteredProducts(products, productsState));
-    } else {
-      const products = await getProducts();
-      localStorage.setItem("products", JSON.stringify(products));
-      setProducts(getFilteredProducts(products, productsState));
-    }
+    const { products, exception } = await getProducts(); 
+    const filteredProducts = getFilteredProducts(productsState, products);  
+    setProducts(filteredProducts);
   }, [productsState]);
 
   return (
