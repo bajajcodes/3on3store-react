@@ -17,10 +17,10 @@ function Card({ product, productInWishlist }) {
 
   function wishlistHandler(product) {
     const type = inWishlist ? "REMOVE" : "ADD";
-    setInWishlist((inWishlistToggle) => !inWishlistToggle); console.log({inWishlist, type});
+    setInWishlist((inWishlistToggle) => !inWishlistToggle); 
     wishlistDispatch({ type, product });
   }
-  console.log({inWishlist});
+
   return (
     <div className="card">
       <div>
