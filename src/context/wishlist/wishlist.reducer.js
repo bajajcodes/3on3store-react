@@ -14,23 +14,11 @@ export function wishlistReducerFunction(state, { type, product }) {
       return state;
   }
 }
+
 function addToWishlist(wishlist, product) {
-  return [...wishlist, product];
+   return wishlist.find(wishlistProduct => wishlistProduct._id === product._id) ? wishlist : [...wishlist, product]
 }
 
 function removeFromWishlist(wishlist, product) {
-  let isFirst = false;
-  return [...wishlist].filter(
-    (wishlistProduct) =>{
-        if(wishlistProduct._id !== product._id) {
-          return wishlistProduct;
-        }else{
-          if(!isFirst){
-            isFirst = true;
-          }else{
-            return wishlistProduct;
-          }
-        }
-    }
-  );
+  return [...wishlist].filter(wishlistProduct =>wishlistProduct._id !== product._id);
 }
