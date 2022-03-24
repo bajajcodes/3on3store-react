@@ -1,7 +1,15 @@
-export function productsReducer(state, { type, sortType, rating }) {
+const defaultFiltersState = {
+  sortby: "",
+  categoryIntelligence: false,
+  categorySocialSkills: false,
+  categoryStrength: false,
+  rating: 1,
+};
+
+function productsReducer(state, { type, sortType, rating }) {
   switch (type) {
     case "CLEAR_ALL_FILTERS":
-      return getProdutsWithoutFilters();
+      return defaultFiltersState;
     case "CATEGORY_INTELLIGENCE":
       return { ...state, categoryIntelligence: !state.categoryIntelligence };
     case "CATEGORY_SOCIAL_SKILLS":
@@ -17,12 +25,4 @@ export function productsReducer(state, { type, sortType, rating }) {
   }
 }
 
-function getProdutsWithoutFilters() {
-  return {
-    sortby: "",
-    categoryIntelligence: false,
-    categorySocialSkills: false,
-    categoryStrength: false,
-    rating: 1,
-  };
-}
+export { defaultFiltersState, productsReducer };

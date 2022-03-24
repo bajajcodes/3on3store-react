@@ -1,13 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
-import { productsReducer } from "./products.filters.reducer";
-
-const defaultFiltersState = {
-  sortby: "",
-  categoryIntelligence: false,
-  categorySocialSkills: false,
-  categoryStrength: false,
-  rating: 1,
-};
+import {
+  productsReducer,
+  defaultFiltersState,
+} from "./products.filters.reducer";
 
 const ProductsContext = createContext(null);
 
