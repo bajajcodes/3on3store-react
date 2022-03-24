@@ -1,23 +1,21 @@
-import { useState } from "react";
 import "./card.styles.css";
+import { useState } from "react";
 import { Star } from "../star/star";
 import { useLocation } from "react-router-dom";
 import { useWishlistContext } from "context";
 
-function Card({ product, productInWishlist }) {
-  const { title, price, description, image, rating } = product;
+function Card({ product }) {
+  const { _id, title, price, description, image, rating } = product;
   const [inCart, setInCart] = useState(false);
-  const [inWishlist, setInWishlist] = useState(productInWishlist || false);
   const { pathname } = useLocation();
-  const { wishlistDispatch } = useWishlistContext();
+  const { wishlistDispatch, checkInWishlist } = useWishlistContext();
 
   function addToCartHandler() {
     setInCart((prev) => !prev);
   }
 
   function wishlistHandler(product) {
-    const type = inWishlist ? "REMOVE" : "ADD";
-    setInWishlist((inWishlistToggle) => !inWishlistToggle); 
+    const type = checkInWishlist(product._id) ? "REMOVE" : "ADD";
     wishlistDispatch({ type, product });
   }
 
@@ -37,7 +35,7 @@ function Card({ product, productInWishlist }) {
         <span
           className=" card-img-dismiss-overlay"
           onClick={() => wishlistHandler(product)}
-          style={{ color: inWishlist ? "red" : "white" }}
+          style={{ color: checkInWishlist(_id) ? "red" : "white" }}
         >
           {"\u2764"}
         </span>
