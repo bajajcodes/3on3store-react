@@ -157,7 +157,7 @@ const intelligenceProducts = [
     description:
       "Book summaries by Blas Moros, from blas.com - More than 400 summarized books  - More than 3,000 pages Pay what you want for it.",
     image: "https://public-files.gumroad.com/h10k5mlretu1m2167iry5fnqvj8j",
-    price: "",
+    price: "257",
     rating: "5",
     title: "The Rabbit Hole",
   },
