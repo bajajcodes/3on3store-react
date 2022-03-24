@@ -1,7 +1,7 @@
 import { Card } from "components";
 import { getFilteredProducts } from "./filters.helpers";
 import axios from "axios";
-import { useEffect , useState} from "react";
+import { useEffect, useState } from "react";
 import { useProducts } from "context";
 
 async function getProducts() {
@@ -17,15 +17,19 @@ async function getProducts() {
 function CardContainer() {
   const [products, setProducts] = useState([]);
   const { productsState } = useProducts();
-  // useEffect(async () => {
-  //   const products = await getProducts();
-  //   setProducts(getFilteredProducts(products, productsState));
-  // }, []);
 
   useEffect(async () => {
-    const products = await getProducts();
-    setProducts(getFilteredProducts(products, productsState));
-  }, [productsState])
+    const produtsInLocalStroage = localStorage.getItem("products");
+
+    if (produtsInLocalStroage) {
+      const products = JSON.parse(produtsInLocalStroage);
+      setProducts(getFilteredProducts(products, productsState));
+    } else {
+      const products = await getProducts();
+      localStorage.setItem("products", JSON.stringify(products));
+      setProducts(getFilteredProducts(products, productsState));
+    }
+  }, [productsState]);
 
   return (
     <div className="products-cards-container">
@@ -33,9 +37,16 @@ function CardContainer() {
         products.map((product, index) => (
           <Card product={product} key={index} />
         ))}
-        {
-          !products.length && <h2 style={{textAlign:"center", border:"5px groove var(--logo-color)"}}>Loading<span>...</span></h2>
-        }
+      {!products.length && (
+        <h2
+          style={{
+            textAlign: "center",
+            border: "5px groove var(--logo-color)",
+          }}
+        >
+          Loading<span>...</span>
+        </h2>
+      )}
     </div>
   );
 }
