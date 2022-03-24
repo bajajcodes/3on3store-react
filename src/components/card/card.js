@@ -9,7 +9,6 @@ function Card({ product, productInWishlist, productInCart }) {
   const [inCart, setInCart] = useState(productInCart || false);
   const [inWishlist, setInWishlist] = useState(productInWishlist || false);
   const {pathname} = useLocation();
-  console.log(pathname);
 
   function addToCartHandler() {
     setInCart((prev) => !prev);
