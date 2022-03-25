@@ -174,9 +174,6 @@ input[type="radio"]:checked {
   text-overflow: ellipsis;
   position: absolute;
   z-index: 10;
-  right: 0;
-  /* top:0; */
-  bottom: 0;
   box-shadow: 5px  -4px 4px 5px;
 } 
 
