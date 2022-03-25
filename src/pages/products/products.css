@@ -161,6 +161,25 @@ input[type="radio"]:checked {
   background-color: var(--grey-color);
 }
 
+/* card-change-for-alert */
+.card{
+  position: relative;;
+}
+
+/* alert */
+.alert{
+  min-width: 200px;
+  max-width: 300px; 
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  position: absolute;
+  z-index: 10;
+  right: 0;
+  /* top:0; */
+  bottom: 0;
+  box-shadow: 5px  -4px 4px 5px;
+} 
+
 /* main-content cards */
 .products-cards-container,
 .cards-container {
