@@ -35,7 +35,7 @@ function CardContainer() {
     <div className="products-cards-container">
       {products &&
         products.map((product, index) => (
-          <Card product={product} key={index}/>
+          <Card product={product} key={index} />
         ))}
       {!products.length && (
         <h2
