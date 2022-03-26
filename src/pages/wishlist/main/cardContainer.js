@@ -1,12 +1,14 @@
 import { Card } from "components";
-import { products } from "dump";
+import { useWishlistContext } from "context";
 
 function CardContainer() {
+  const { wishlistState } = useWishlistContext();
+  const { wishlist } = wishlistState;
   return (
     <div className="cards-container">
-      {products &&
-        products.map((product, index) => (
-          <Card product={product} key={index} productInWishlist={true} />
+      {wishlist &&
+        wishlist.map((product, index) => (
+          <Card product={product} key={index} />
         ))}
     </div>
   );
