@@ -1,11 +1,16 @@
+import axios from "axios";
 
 function getSortedProducts(type, products) {
   if (type === "LOW_TO_HIGH") {
-    return [...products].sort((a, b) => parseInt(a.price,10) - parseInt(b.price,10));
+    return [...products].sort(
+      (a, b) => parseInt(a.price, 10) - parseInt(b.price, 10)
+    );
   }
 
   if (type === "HIGH_TO_LOW") {
-    return [...products].sort((a, b) => parseInt(b.price,10) - parseInt(a.price,10));
+    return [...products].sort(
+      (a, b) => parseInt(b.price, 10) - parseInt(a.price, 10)
+    );
   }
 
   return products;
@@ -58,15 +63,16 @@ function getProductsWithThisRating(rating, products) {
     : products;
 }
 
-function getFilteredProducts(products, productsState) {
-  const {
+function getFilteredProducts(
+  {
     sortby,
     categoryIntelligence,
     categorySocialSkills,
     categoryStrength,
     rating,
-  } = productsState;
-
+  },
+  products
+) {
   const sortedProducts = getSortedProducts(sortby, products);
   const categorizedProducts = getProductsWithThisCategory(
     categoryIntelligence,
@@ -78,4 +84,14 @@ function getFilteredProducts(products, productsState) {
   return ratedProduts;
 }
 
-export { getFilteredProducts };
+async function getProducts() {
+  try {
+    const response = await axios.get("/api/products");
+    const products = response.data.products;
+    return { products, exception: null };
+  } catch (exception) {
+    return { products: [], exception };
+  }
+}
+
+export { getFilteredProducts, getProducts };
