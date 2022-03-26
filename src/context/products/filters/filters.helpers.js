@@ -87,7 +87,7 @@ function getFilteredProducts(
 async function getProducts() {
   try {
     const response = await axios.get("/api/products");
-    const products = await response.data.products;
+    const products = response.data.products;
     return { products, exception: null };
   } catch (exception) {
     return { products: [], exception };

@@ -1,15 +1,25 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState, useEffect } from "react";
 import {
   productsReducer,
   defaultFiltersState,
 } from "./products.filters.reducer";
+import { getProducts, getFilteredProducts } from "./filters.helpers";
 
 const ProductsContext = createContext(null);
 
 function ProductProvider({ children }) {
-  const [productsState, productsDispatch] = useReducer(productsReducer, {...defaultFiltersState});
+  const [products, setProducts] = useState([]);
+  const [productsState, productsDispatch] = useReducer(productsReducer, defaultFiltersState);
+
+  useEffect(async () => {
+    const { products, exception } = await getProducts();
+    setProducts(products);
+  }, []);
+
+  const filteredProducts = getFilteredProducts(productsState, products);
+
   return (
-    <ProductsContext.Provider value={{ productsState, productsDispatch }}>
+    <ProductsContext.Provider value={{ productsState, productsDispatch, filteredProducts }}>
       {children}
     </ProductsContext.Provider>
   );
