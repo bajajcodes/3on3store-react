@@ -79,6 +79,7 @@ a {
 
 /* main */
 .auth-main {
+  position: relative;
   padding: 0 var(--size-9) calc(3 * var(--size-9)) var(--size-9);
 }
 
