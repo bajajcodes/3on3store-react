@@ -2,19 +2,30 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { makeServer } from "server";
 import { RouteSwitch } from "RouteSwitch";
-import { ProductProvider, WishlistProvider, CartProvider } from "context";
+import { ContextProvider } from "./ConextProviders";
+// import {
+//   ProductProvider,
+//   WishlistProvider,
+//   CartProvider,
+//   AuthProvider,
+// } from "context";
 
 makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <ProductProvider>
-      <CartProvider>
-      <WishlistProvider>
+    {/* <ProductProvider>
+      <AuthProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <RouteSwitch />
+          </WishlistProvider>
+        </CartProvider>
+      </AuthProvider>
+    </ProductProvider> */}
+    <ContextProvider>
       <RouteSwitch />
-      </WishlistProvider>
-      </CartProvider>
-    </ProductProvider>
+    </ContextProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

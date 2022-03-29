@@ -1,57 +1,156 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import {
+  togglePasswordVisibilityIcon,
+  togglePasswordInputType,
+  getUserSignup,
+} from "./main.helper";
+import { ErrorAlert } from "../alert/alert";
+import { useAuthContext } from "context";
 
 function AuthSignup() {
-  const [passwordInput, setPasswordInput] = useState({
-    visibility: "visibility",
-    type: "password",
+  const [formFields, setFormFields] = useState({
+    _firstName: "",
+    _lastName: "",
+    _email: "",
+    _password: "",
+    _confirmPassword: "",
   });
 
-  const [confirmPasswordInput, setconfirmPasswordInput] = useState({
-    visibility: "visibility",
-    type: "password",
+  const [passwordFieldsIconsToggle, setPasswordFieldsIconsToggle] = useState({
+    passwordIcon: "visibility_off",
+    passwordType: "password",
+    confirmPasswordIcon: "visibility_off",
+    confirmPasswordType: "password",
   });
 
-  function togglePasswordVisibilityIcon(prev) {
-    return prev === "visibility" ? "visibility_off" : "visibility";
+  const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
+  const navigate = useNavigate();
+  const { authDispatch } = useAuthContext();
+
+  function handleChange(event) {
+    const value = event.target.value;
+    setFormFields({
+      ...formFields,
+      [event.target.name]: value,
+    });
   }
 
-  function togglePasswordInputType(prev) {
-    return prev === "password" ? "text" : "password";
+  function handlePasswordIconsClick(event) {
+    const name = event.target.getAttribute("datainputtypename");
+    const type = event.target.getAttribute("dataiconname");
+
+    setPasswordFieldsIconsToggle({
+      ...passwordFieldsIconsToggle,
+      [name]: togglePasswordVisibilityIcon(passwordFieldsIconsToggle[name]),
+      [type]: togglePasswordInputType(passwordFieldsIconsToggle[type]),
+    });
   }
 
-  function togglePasswordInputHandlers(name) {
-    if (name === "password") {
-      setPasswordInput((prev) => ({
-        ...prev,
-        visibility: togglePasswordVisibilityIcon(prev.visibility),
-        type: togglePasswordInputType(prev.type),
+  async function signupClickHandler(event) {
+    event.preventDefault();
+
+    if (formFields["_password"] !== formFields["_confirmPassword"]) {
+      setAlertInfo({
+        display: true,
+        message: "Passwords do not match",
+      });
+      const timeoutValue = setTimeout(
+        () =>
+          setAlertInfo((prev) => ({
+            ...prev,
+            display: !prev.display,
+            message: "",
+          })),
+        3000
+      );
+    } else if (
+      (formFields["_password"].length === 0 ||
+        formFields["_confirmPassword"].length === 0) &&
+      formFields["_lastName"].length
+    ) {
+      setAlertInfo({
+        display: true,
+        message: "Check Passwords.",
+      });
+      const timeoutValue = setTimeout(
+        () =>
+          setAlertInfo((prev) => ({
+            ...prev,
+            display: !prev.display,
+            message: "",
+          })),
+        3000
+      );
+    } else if (formFields["_password"] === formFields["_confirmPassword"]) {
+      const { isSignuped, info } = await getUserSignup(formFields);
+
+      setFormFields((prev) => ({
+        _firstName: "",
+        _lastName: "",
+        _email: "",
+        _password: "",
+        _confirmPassword: "",
       }));
-    } else {
-      setconfirmPasswordInput((prev) => ({
-        ...prev,
-        visibility: togglePasswordVisibilityIcon(prev.visibility),
-        type: togglePasswordInputType(prev.type),
-      }));
+
+      if (isSignuped) {
+        authDispatch({
+          type: "SIGNUP",
+        });
+        navigate("/products");
+      } else if (isSignuped === false) {
+        setAlertInfo(info);
+        const timeoutValue = setTimeout(
+          () =>
+            setAlertInfo((prev) => ({
+              ...prev,
+              display: !prev.display,
+              message: "",
+            })),
+          3000
+        );
+      }
     }
   }
 
   return (
     <main className="auth-main">
+      <ErrorAlert
+        message={alertInfo.message}
+        displayValue={alertInfo.display}
+      />
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Email</span>
-          <input type="text" className="auth-input" />
+          <input
+            type="text"
+            className="auth-input"
+            name="_email"
+            value={formFields._email}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">First Name</span>
-          <input type="text" className="auth-input" />
+          <input
+            type="text"
+            className="auth-input"
+            name="_firstName"
+            value={formFields._firstName}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Last Name</span>
-          <input type="text" className="auth-input" />
+          <input
+            type="text"
+            className="auth-input"
+            name="_lastName"
+            value={formFields._lastName}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
@@ -60,14 +159,20 @@ function AuthSignup() {
             <Link to="#">
               <span
                 className="material-icons"
-                onClick={() => togglePasswordInputHandlers("password")}
+                datainputtypename="passwordIcon"
+                dataiconname="passwordType"
+                onClick={(e) => handlePasswordIconsClick(e)}
               >
-                {" "}
-                {passwordInput.visibility}{" "}
+                {passwordFieldsIconsToggle.passwordIcon}
               </span>
             </Link>
           </div>
-          <input type={passwordInput.type} className="auth-input" />
+          <input
+            type={passwordFieldsIconsToggle.passwordType}
+            className="auth-input"
+            name="_password"
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
         <div className="flex-nowrap input-group dgrid-fieldset">
@@ -76,17 +181,30 @@ function AuthSignup() {
             <Link to="#">
               <span
                 className="material-icons"
-                onClick={() => togglePasswordInputHandlers("confirmPassword")}
+                datainputtypename="confirmPasswordIcon"
+                dataiconname="confirmPasswordType"
+                value={formFields._password}
+                onClick={(e) => handlePasswordIconsClick(e)}
               >
-                {" "}
-                {confirmPasswordInput.visibility}{" "}
+                {passwordFieldsIconsToggle.confirmPasswordIcon}
               </span>
             </Link>
           </div>
-          <input type={confirmPasswordInput.type} className="auth-input" />
+          <input
+            type={passwordFieldsIconsToggle.confirmPasswordType}
+            className="auth-input"
+            name="_confirmPassword"
+            value={formFields._confirmPassword}
+            onChange={(e) => handleChange(e)}
+          />
         </div>
 
-        <button className="btn btn-secondary"> Signup </button>
+        <button
+          className="btn btn-secondary"
+          onClick={(e) => signupClickHandler(e)}
+        >
+          Signup
+        </button>
       </form>
     </main>
   );
