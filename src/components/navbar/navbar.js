@@ -2,13 +2,29 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./navbar.styles.css";
 import { logoImage } from "data";
+import { useAuthContext } from "context";
 
 function Navbar() {
   const [toggleNavbarNav, setToggleNavbarNav] = useState("");
   const { logoPath, logoDesc } = logoImage;
+  const {
+    authState: { loginStatus },
+    authDispatch,
+  } = useAuthContext();
 
   function hamburgerMenuClickHandler() {
     setToggleNavbarNav((prevShow) => (prevShow ? "" : "show"));
+  }
+
+  function logoutClickHandler() {
+    if (loginStatus === true) {
+      if (localStorage.getItem("token")) {
+        const result = localStorage.removeItem("token");
+        authDispatch({ type: "LOGOUT" });
+      } else {
+        throw new Exception("User is logged in, but token does not exsist.");
+      }
+    }
   }
 
   return (
@@ -44,16 +60,27 @@ function Navbar() {
       </button>
 
       <ul className={`navbar-nav ${toggleNavbarNav}`} id="navbar-nav">
-        <li className="nav-item">
-          <Link to="/login" className="nav-link">
-            <button className="btn btn-secondary bg-grey">Login</button>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="/signup" className="nav-link">
-            <button className="btn btn-secondary bg-grey">Signup</button>
-          </Link>
-        </li>
+        {!loginStatus && (
+          <li className="nav-item">
+            <Link to="/login" className="nav-link">
+              <button className="btn btn-secondary bg-grey">Login</button>
+            </Link>
+          </li>
+        )}
+        {!loginStatus && (
+          <li className="nav-item">
+            <Link to="/signup" className="nav-link">
+              <button className="btn btn-secondary bg-grey">Signup</button>
+            </Link>
+          </li>
+        )}
+        {loginStatus && (
+          <li className="nav-item">
+            <Link to="#" className="nav-link">
+              <button className="btn btn-secondary bg-grey" onClick={() => logoutClickHandler()}>Logout</button>
+            </Link>
+          </li>
+        )}
         <li className="nav-item">
           <Link
             to="/profile"

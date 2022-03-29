@@ -11,6 +11,11 @@ function reducerFunction(state, { type }) {
         signupStatus: true,
         loginStatus: true,
       };
+      case "LOGOUT":
+        return {
+          ...state,
+          loginStatus: false,
+        };
     default:
       return state;
   }
