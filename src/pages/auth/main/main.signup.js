@@ -66,7 +66,8 @@ function AuthSignup() {
       );
     } else if (
       (formFields["_password"].length === 0 ||
-      formFields["_confirmPassword"].length === 0 )&& formFields["_lastName"].length
+        formFields["_confirmPassword"].length === 0) &&
+      formFields["_lastName"].length
     ) {
       setAlertInfo({
         display: true,
@@ -97,9 +98,7 @@ function AuthSignup() {
           type: "SIGNUP",
         });
         navigate("/products");
-      }
-
-      if (isSignuped === false) {
+      } else if (isSignuped === false) {
         setAlertInfo(info);
         const timeoutValue = setTimeout(
           () =>
@@ -164,8 +163,7 @@ function AuthSignup() {
                 dataiconname="passwordType"
                 onClick={(e) => handlePasswordIconsClick(e)}
               >
-                {" "}
-                {passwordFieldsIconsToggle.passwordIcon}{" "}
+                {passwordFieldsIconsToggle.passwordIcon}
               </span>
             </Link>
           </div>
@@ -188,8 +186,7 @@ function AuthSignup() {
                 value={formFields._password}
                 onClick={(e) => handlePasswordIconsClick(e)}
               >
-                {" "}
-                {passwordFieldsIconsToggle.confirmPasswordIcon}{" "}
+                {passwordFieldsIconsToggle.confirmPasswordIcon}
               </span>
             </Link>
           </div>
@@ -206,8 +203,7 @@ function AuthSignup() {
           className="btn btn-secondary"
           onClick={(e) => signupClickHandler(e)}
         >
-          {" "}
-          Signup{" "}
+          Signup
         </button>
       </form>
     </main>

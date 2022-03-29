@@ -24,9 +24,7 @@ function AuthLogin() {
         type: "LOGIN",
       });
       navigate("/products");
-    }
-
-    if (loggedIn === false) {
+    } else if (loggedIn === false) {
       setAlertInfo(info);
       const timeoutValue = setTimeout(
         () =>
@@ -77,8 +75,7 @@ function AuthLogin() {
           className="btn btn-secondary"
           onClick={(e) => loginClickHandler(e)}
         >
-          {" "}
-          Login{" "}
+          Login
         </button>
       </form>
     </main>

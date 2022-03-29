@@ -10,7 +10,7 @@ function ErrorAlert({ message, displayValue }) {
         cancel
       </span>
       <div>
-        <div className="alert-message">{`${message}.`}</div>
+        <div className="alert-message">{message}</div>
       </div>
     </div>
   );
