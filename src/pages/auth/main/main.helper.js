@@ -1,14 +1,5 @@
 import axios from "axios";
 
-const axiosConfig = {
-  headers: {
-    "Content-Type": "application/json;charset=UTF-8",
-    "Access-Control-Allow-Origin": "*",
-    " Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-  },
-};
-
 function cacheCredentialsToLocalStorage(response) {
   try {
     const {
@@ -51,7 +42,7 @@ async function login({ _email, _password }) {
       password: _password,
     };
 
-    const response = await axios.post("/api/auth/login", body, axiosConfig);
+    const response = await axios.post("/api/auth/login", body);
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "login successful." };
   } catch (exception) {
@@ -109,7 +100,7 @@ async function signup({ _email, _password, _firstName, _lastName }) {
       firstName: _firstName,
       lastName: _lastName,
     };
-    const response = await axios.post("/api/auth/signup", body, axiosConfig);
+    const response = await axios.post("/api/auth/signup", body);
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "signup successful." };
   } catch (exception) {
