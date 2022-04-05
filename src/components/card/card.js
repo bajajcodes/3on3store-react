@@ -82,20 +82,19 @@ function Card({ product }) {
               <button
                 className="btn btn-outline-secondary quantity-btn"
                 onClick={() =>
-                  cartDispatch({ type: "INCREASE_QUANTITY", product })
-                }
-              >
-                <span className="material-icons">add</span>
-              </button>
-              <div>Quantity: {quantity}</div>
-
-              <button
-                className="btn btn-outline-secondary quantity-btn"
-                onClick={() =>
                   cartDispatch({ type: "DECREASE_QUANTITY", product })
                 }
               >
                 <span className="material-icons">remove</span>
+              </button>
+              <div>Quantity: {quantity}</div>
+              <button
+                className="btn btn-outline-secondary quantity-btn"
+                onClick={() =>
+                  cartDispatch({ type: "INCREASE_QUANTITY", product })
+                }
+              >
+                <span className="material-icons">add</span>
               </button>
             </div>
           )}

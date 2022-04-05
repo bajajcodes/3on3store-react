@@ -11,14 +11,7 @@ function AuthLogin() {
   const navigate = useNavigate();
   const { authDispatch } = useAuthContext();
 
-  async function loginClickHandler(event) {
-    event.preventDefault();
-
-    const { loggedIn, info } = await getUserLogin({ _email, _password });
-
-    setEmail("");
-    setPassword("");
-
+  function loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info) {
     if (loggedIn) {
       authDispatch({
         type: "LOGIN",
@@ -36,6 +29,23 @@ function AuthLogin() {
         3000
       );
     }
+  }
+
+  async function loginClickHandler(event) {
+    event.preventDefault();
+
+    const { loggedIn, info } = await getUserLogin({ _email, _password });
+
+    setEmail("");
+    setPassword("");
+
+    loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info);
+  }
+
+  async function fillTestLoginCredentials(event) {
+    event.preventDefault();
+    setEmail("shubham@bajaj.com");
+    setPassword("shubhambajaj");
   }
 
   return (
@@ -76,6 +86,12 @@ function AuthLogin() {
           onClick={(e) => loginClickHandler(e)}
         >
           Login
+        </button>
+        <button
+          className="btn btn-secondary"
+          onClick={fillTestLoginCredentials}
+        >
+          Fill Test Login Credentials
         </button>
       </form>
     </main>

@@ -1,5 +1,12 @@
+import { RouteSwitch } from "./RouteSwitch";
+import { ContextProvider } from "./ConextProviders";
+
 function App() {
-  return <></>;
+  return (
+    <ContextProvider>
+      <RouteSwitch />
+    </ContextProvider>
+  );
 }
 
-export default App;
+export { App };

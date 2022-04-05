@@ -99,7 +99,7 @@
 }
 
 .card-filter-category > *,
-.card-filter-category input{
+.card-filter-category input {
   cursor: pointer;
 }
 
@@ -162,23 +162,23 @@ input[type="radio"]:checked {
 }
 
 /* card-change-for-alert */
-.card{
-  position: relative;;
+.card {
+  position: relative;
 }
 
 /* alert */
-.card .alert{
+.card .alert {
   min-width: 200px;
-  max-width: 300px; 
+  max-width: 300px;
   word-wrap: break-word;
   text-overflow: ellipsis;
   position: absolute;
   right: 0;
   bottom: unset;
   z-index: 10;
-  box-shadow: 5px  -4px 4px 5px;
+  box-shadow: 5px -4px 4px 5px;
   transform: none;
-} 
+}
 
 /* main-content cards */
 .products-cards-container,
@@ -187,6 +187,11 @@ input[type="radio"]:checked {
   display: grid;
   row-gap: var(--size-15);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.products-cards-container {
+  max-height: 75vh;
+  overflow-y: scroll;
 }
 
 .products-cards-container .card,
@@ -199,6 +204,7 @@ input[type="radio"]:checked {
   z-index: 1;
   min-height: calc(var(--size-9) * 31);
   max-height: calc(var(--size-9) * 34);
+  margin-bottom: var(--size-9);
 }
 
 .products-cards-container .card:hover,
@@ -209,7 +215,7 @@ input[type="radio"]:checked {
 }
 
 .products-cards-container .card .card-body,
-.cards-container .card .card-body{
+.cards-container .card .card-body {
   min-height: 200px;
   max-height: 220px;
   overflow: hidden;
@@ -217,22 +223,22 @@ input[type="radio"]:checked {
   flex-direction: column;
 }
 
-.card-body .card-text{
+.card-body .card-text {
   margin-top: auto;
 }
 
 .products-cards-container .card .card-body .card-heading,
-.cards-container .card .card-body .card-heading{
-  max-height: 150px;  
+.cards-container .card .card-body .card-heading {
+  max-height: 150px;
   overflow: hidden;
 }
 
-.card-heading .card-title{
+.card-heading .card-title {
   max-height: 80px;
   overflow: hidden;
 }
 
-.card-img-dismiss-overlay{
+.card-img-dismiss-overlay {
   font-size: var(--size-13);
   outline-style: thick;
   outline-color: black;
@@ -281,7 +287,7 @@ input[type="radio"]:checked {
   overflow-x: hidden;
 } */
 
-.card-text .star{
+.card-text .star {
   vertical-align: sub;
 }
 
