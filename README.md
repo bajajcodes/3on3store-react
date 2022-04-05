@@ -1,5 +1,5 @@
 #  3on3store
-3on3store is an ecommerce app which aims to help by offering products which makes a person fit, intelligent and wealthy.
+ 3on3 store where you will get products to be 3 on 3 for fitness, intelligence and social wisdom.
 
 # Tech Composition
  - HTML, CSS, Javascript  (core)
@@ -9,16 +9,16 @@
 
  # Features
  - Get Products of three categories strength, social skills and intelligence.
- - Get all Products listed by clicking buy now button on home page and filter 
-    products from home page by clicking on images, visualizing each categroy,
- - Filter products by category and rating, and Sort products by price, and clear 
-   all applied filters by clickin on clear button.
-  - Login, Logout and Signup do all of these with clicks and few inputs. 
- - Add products to cart and wishlist, to add user must be logged-in, use test credentials
-    to use the app and get signuped when it becomes desire.
+ - Get all Products listed by clicking buy now button on home page.
+ - Start filtering products from home page by clicking on images, visualizing each categroy,
+ - Filter products by category and rating, and Sort products by price.
+ - clear all applied filters by clicking on clear button.
+ - Login, Logout and Signup do all of these with clicks and few inputs. 
+ - Add products to cart and wishlist, to add user must be logged-in.
+ - Use test credentials to use the app and get signuped when it becomes desire.
  - Clicking twice on add to cart button, increase the qunatity on cart.
- - Cart page gives powers to increase and decrease quantity, remove prodcut from cart and add to wishlist.
  - Wishlist page gives powers to add product to cart and remove product from wishlist.
+ - Cart page gives powers to increase and decrease quantity, remove prodcut from cart and add to wishlist.
  
 # Preview
 
