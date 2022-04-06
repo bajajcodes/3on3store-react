@@ -20,6 +20,9 @@
  - Wishlist page gives powers to add product to cart and remove product from wishlist.
  - Cart page gives powers to increase and decrease quantity, remove prodcut from cart and add to wishlist.
  
+# Checks
+ [ ✅ ] Responsive
+ 
 # Preview
 
 https://user-images.githubusercontent.com/29247011/161843078-849053a0-0a9d-4012-a4da-49b9531464c0.mp4
