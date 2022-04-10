@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import {
   togglePasswordVisibilityIcon,
@@ -27,6 +27,7 @@ function AuthSignup() {
   const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
   const navigate = useNavigate();
   const { authDispatch } = useAuthContext();
+  const location = useLocation();
 
   function handleChange(event) {
     const value = event.target.value;
@@ -55,7 +56,7 @@ function AuthSignup() {
         display: true,
         message: "Passwords do not match",
       });
-      const timeoutValue = setTimeout(
+      setTimeout(
         () =>
           setAlertInfo((prev) => ({
             ...prev,
@@ -73,7 +74,7 @@ function AuthSignup() {
         display: true,
         message: "Check Passwords.",
       });
-      const timeoutValue = setTimeout(
+      setTimeout(
         () =>
           setAlertInfo((prev) => ({
             ...prev,
@@ -95,12 +96,13 @@ function AuthSignup() {
 
       if (isSignuped) {
         authDispatch({
-          type: "SIGNUP",
+          type: "LOGIN",
         });
-        navigate("/products");
+        const from = location.state?.from;
+        navigate(from, { replace: true });
       } else if (isSignuped === false) {
         setAlertInfo(info);
-        const timeoutValue = setTimeout(
+        setTimeout(
           () =>
             setAlertInfo((prev) => ({
               ...prev,

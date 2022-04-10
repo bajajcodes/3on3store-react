@@ -17,10 +17,10 @@ function Navbar() {
   }
 
   function logoutClickHandler() {
-    if (loginStatus === true) {
+    if (loginStatus) {
       if (localStorage.getItem("token")) {
-        const result = localStorage.removeItem("token");
-        authDispatch({ type: "LOGOUT" });
+        localStorage.removeItem("token");
+        authDispatch({ type: "LOGIN" });
       } else {
         throw new Exception("User is logged in, but token does not exsist.");
       }
@@ -77,7 +77,12 @@ function Navbar() {
         {loginStatus && (
           <li className="nav-item">
             <Link to="#" className="nav-link">
-              <button className="btn btn-secondary bg-grey" onClick={() => logoutClickHandler()}>Logout</button>
+              <button
+                className="btn btn-secondary bg-grey"
+                onClick={() => logoutClickHandler()}
+              >
+                Logout
+              </button>
             </Link>
           </li>
         )}

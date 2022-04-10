@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useAuthContext } from "context";
 import { ErrorAlert } from "../alert/alert";
@@ -8,18 +8,20 @@ function AuthLogin() {
   const [_email, setEmail] = useState("");
   const [_password, setPassword] = useState("");
   const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
+  const location = useLocation();
   const navigate = useNavigate();
   const { authDispatch } = useAuthContext();
 
-  function loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info) {
+  function loginHandler(loggedIn, authDispatch, setAlertInfo, info) {
     if (loggedIn) {
       authDispatch({
         type: "LOGIN",
       });
-      navigate("/products");
+      const from = location.state?.from || "/";
+      navigate(from, { replace: true });
     } else if (loggedIn === false) {
       setAlertInfo(info);
-      const timeoutValue = setTimeout(
+      setTimeout(
         () =>
           setAlertInfo((prev) => ({
             ...prev,
@@ -39,7 +41,7 @@ function AuthLogin() {
     setEmail("");
     setPassword("");
 
-    loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info);
+    loginHandler(loggedIn, authDispatch, setAlertInfo, info);
   }
 
   async function fillTestLoginCredentials(event) {

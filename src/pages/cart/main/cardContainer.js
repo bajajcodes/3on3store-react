@@ -5,6 +5,7 @@ function CardContainer() {
   const { cartState } = useCartContext();
   const { cart, getCartSummary } = cartState;
   const { numberOfProductsInCart } = getCartSummary(cart);
+
   return (
     <div
       className="cards-container"

@@ -1,5 +1,7 @@
-function reducerFunction(state, { type, product }) {
+function reducerFunction(state, { type, product, cart }) {
   switch (type) {
+    case "UPDATE":
+      return { ...state, cart: cart };
     case "ADD":
       return { ...state, cart: addToCart(state.cart, product) };
     case "REMOVE":

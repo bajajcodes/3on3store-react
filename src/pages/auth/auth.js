@@ -6,6 +6,7 @@ import { authInfo } from "data";
 
 // TODO: make these components import dynamic
 function Login() {
+
   return (
     <div className="auth">
       <AuthHeader authInfo={authInfo.login} />

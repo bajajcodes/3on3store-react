@@ -6,20 +6,52 @@ import { useState } from "react";
 import { useAuthContext } from "context";
 
 function Card({ product }) {
-  const { _id, title, price, description, image, rating, quantity } = product;
+  const { _id, title, price, description, image, rating, qty } = product;
   const [alertDisplay, setAlertDisplay] = useState("none");
   const { pathname } = useLocation();
-  const { wishlistDispatch, checkInWishlist } = useWishlistContext();
-  const { checkInCart, cartDispatch } = useCartContext();
+  const {
+    wishlistDispatch,
+    checkInWishlist,
+    addToWishlist,
+    removeFromWishlist,
+  } = useWishlistContext();
+  const {
+    checkInCart,
+    cartDispatch,
+    addToCart,
+    removeFromCart,
+    updateItemInCart,
+  } = useCartContext();
   const {
     authState: { loginStatus },
   } = useAuthContext();
 
-  function cartHandler(product) {
+  async function updateItemHandler(product, type) {
+    let cart = [];
+    if (type === "decrement" && product.qty === 1) {
+      cart = await removeFromCart(product);
+    } else {
+      cart = await updateItemInCart(product, type);
+    }
+    cartDispatch({ type: "UPDATE", cart });
+  }
+
+  async function cartHandler(product) {
     if (loginStatus === true) {
       const isProductRemoveable = pathname === "/cart" ? "REMOVE" : "ADD";
       const type = checkInCart(product._id) ? isProductRemoveable : "ADD";
-      cartDispatch({ type, product });
+      let cart = [];
+
+      if (type === "ADD") {
+        if (checkInCart(product._id)) {
+          cart = await updateItemInCart(product, "increment");
+        } else {
+          cart = await addToCart(product);
+        }
+      } else {
+        cart = await removeFromCart(product);
+      }
+      cartDispatch({ type: "UPDATE", cart });
 
       if (type === "ADD") {
         setAlertDisplay("inline-block");
@@ -33,10 +65,16 @@ function Card({ product }) {
     }
   }
 
-  function wishlistHandler(product) {
+  async function wishlistHandler(product) {
     if (loginStatus === true) {
+      let wishlist = [];
       const type = checkInWishlist(product._id) ? "REMOVE" : "ADD";
-      wishlistDispatch({ type, product });
+      if (type === "REMOVE") {
+        wishlist = await removeFromWishlist(product);
+      } else if (type === "ADD") {
+        wishlist = await addToWishlist(product);
+      }
+      wishlistDispatch({ type: "UPDATE", wishlist });
     }
 
     if (loginStatus === false) {
@@ -81,18 +119,14 @@ function Card({ product }) {
             <div className="dflex align-center-and-space-between qunatity-action">
               <button
                 className="btn btn-outline-secondary quantity-btn"
-                onClick={() =>
-                  cartDispatch({ type: "DECREASE_QUANTITY", product })
-                }
+                onClick={() => updateItemHandler(product, "decrement")}
               >
                 <span className="material-icons">remove</span>
               </button>
-              <div>Quantity: {quantity}</div>
+              <div>Quantity: {qty}</div>
               <button
                 className="btn btn-outline-secondary quantity-btn"
-                onClick={() =>
-                  cartDispatch({ type: "INCREASE_QUANTITY", product })
-                }
+                onClick={() => updateItemHandler(product, "increment")}
               >
                 <span className="material-icons">add</span>
               </button>

@@ -1,13 +1,19 @@
-import { useContext, createContext, useReducer } from "react";
+import { useContext, createContext, useReducer, useEffect } from "react";
 import { reducerFunction } from "./auth.reducer";
 
 const AuthContext = createContext(null);
 
+function checkIsTokenExsist() {
+  const token = localStorage.getItem("token");
+  return token ? true : false;
+}
+
 function AuthProvider({ children }) {
+  const loginStatus = checkIsTokenExsist();
   const [authState, authDispatch] = useReducer(reducerFunction, {
-    loginStatus: false,
-    signupStatus: false,
+    loginStatus,
   });
+
 
   return (
     <AuthContext.Provider value={{ authState, authDispatch }}>
