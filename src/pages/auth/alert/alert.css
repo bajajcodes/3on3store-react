@@ -3,8 +3,6 @@
   max-width: 500px;
   position: absolute;
   border: 1px solid;
-  /* right: 50%;
-  left: 50%; */
   transform: translate(50%,50%);
   box-shadow: none;
   z-index: 10;

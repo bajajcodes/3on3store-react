@@ -20,8 +20,8 @@ function CardContainer() {
   return (
     <div className="products-cards-container">
       {filteredProducts &&
-        filteredProducts.map((product, index) => (
-          <Card product={product} key={index} />
+        filteredProducts.map((product) => (
+          <Card product={product} key={product._id} />
         ))}
       {!filteredProducts.length && sastaLoader()}
     </div>

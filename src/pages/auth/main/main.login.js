@@ -1,54 +1,19 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useAuthContext } from "context";
 import { ErrorAlert } from "../alert/alert";
-import { getUserLogin } from "./main.helper";
+import { useLoginValidation } from "./useLoginValidation";
 
 function AuthLogin() {
-  const [_email, setEmail] = useState("");
-  const [_password, setPassword] = useState("");
   const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { authDispatch } = useAuthContext();
+  const [
+    _email,
+    _password,
+    setEmail,
+    setPassword,
+    loginClickHandler,
+    fillTestLoginCredentials,
+  ] = useLoginValidation(setAlertInfo);
 
-  function loginHandler(loggedIn, authDispatch, setAlertInfo, info) {
-    if (loggedIn) {
-      authDispatch({
-        type: "LOGIN",
-      });
-      const from = location.state?.from || "/";
-      navigate(from, { replace: true });
-    } else if (loggedIn === false) {
-      setAlertInfo(info);
-      setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
-      );
-    }
-  }
-
-  async function loginClickHandler(event) {
-    event.preventDefault();
-
-    const { loggedIn, info } = await getUserLogin({ _email, _password });
-
-    setEmail("");
-    setPassword("");
-
-    loginHandler(loggedIn, authDispatch, setAlertInfo, info);
-  }
-
-  async function fillTestLoginCredentials(event) {
-    event.preventDefault();
-    setEmail("shubham@bajaj.com");
-    setPassword("shubhambajaj");
-  }
 
   return (
     <main className="auth-main">

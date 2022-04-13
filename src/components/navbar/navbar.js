@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./navbar.styles.css";
 import { logoImage } from "data";
 import { useAuthContext } from "context";
@@ -11,6 +11,7 @@ function Navbar() {
     authState: { loginStatus },
     authDispatch,
   } = useAuthContext();
+  const location = useLocation();
 
   function hamburgerMenuClickHandler() {
     setToggleNavbarNav((prevShow) => (prevShow ? "" : "show"));
@@ -42,14 +43,16 @@ function Navbar() {
         </Link>
       </div>
 
-      <div className="search-box">
-        <div className="input-group">
-          <input type="text" className="input" placeholder="Search" />
-          <button>
-            <span className="material-icons input-group-icon">search</span>
-          </button>
+      {location.pathname === "/products" && (
+        <div className="search-box">
+          <div className="input-group">
+            <input type="text" className="input" placeholder="Search" />
+            <button>
+              <span className="material-icons input-group-icon">search</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       <button
         className="hamburger"

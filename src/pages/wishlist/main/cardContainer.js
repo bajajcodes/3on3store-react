@@ -7,9 +7,7 @@ function CardContainer() {
   return (
     <div className="cards-container">
       {wishlist &&
-        wishlist.map((product, index) => (
-          <Card product={product} key={index} />
-        ))}
+        wishlist.map((product) => <Card product={product} key={product._id} />)}
     </div>
   );
 }

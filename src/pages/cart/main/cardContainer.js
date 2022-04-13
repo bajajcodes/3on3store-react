@@ -3,8 +3,7 @@ import { useCartContext } from "context";
 
 function CardContainer() {
   const { cartState } = useCartContext();
-  const { cart, getCartSummary } = cartState;
-  const { numberOfProductsInCart } = getCartSummary(cart);
+  const { cart } = cartState;
 
   return (
     <div
@@ -12,7 +11,7 @@ function CardContainer() {
       style={{ overflowY: cart.length > 1 ? "scroll" : "hidden" }}
     >
       {cart &&
-        cart.map((product, index) => <Card product={product} key={index} />)}
+        cart.map((product) => <Card product={product} key={product._id} />)}
     </div>
   );
 }

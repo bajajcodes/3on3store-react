@@ -1,87 +1,22 @@
-import "./card.styles.css";
 import { Star } from "../star/star";
 import { useLocation } from "react-router-dom";
 import { useWishlistContext, useCartContext } from "context";
 import { useState } from "react";
 import { useAuthContext } from "context";
+import { useWishlistHandler } from "./useWishlistHandler";
+import { useCartHandler } from "./useCartHandler";
 
 function Card({ product }) {
   const { _id, title, price, description, image, rating, qty } = product;
   const [alertDisplay, setAlertDisplay] = useState("none");
   const { pathname } = useLocation();
-  const {
-    wishlistDispatch,
-    checkInWishlist,
-    addToWishlist,
-    removeFromWishlist,
-  } = useWishlistContext();
-  const {
-    checkInCart,
-    cartDispatch,
-    addToCart,
-    removeFromCart,
-    updateItemInCart,
-  } = useCartContext();
+  const { checkInWishlist } = useWishlistContext();
+  const { checkInCart } = useCartContext();
   const {
     authState: { loginStatus },
   } = useAuthContext();
-
-  async function updateItemHandler(product, type) {
-    let cart = [];
-    if (type === "decrement" && product.qty === 1) {
-      cart = await removeFromCart(product);
-    } else {
-      cart = await updateItemInCart(product, type);
-    }
-    cartDispatch({ type: "UPDATE", cart });
-  }
-
-  async function cartHandler(product) {
-    if (loginStatus === true) {
-      const isProductRemoveable = pathname === "/cart" ? "REMOVE" : "ADD";
-      const type = checkInCart(product._id) ? isProductRemoveable : "ADD";
-      let cart = [];
-
-      if (type === "ADD") {
-        if (checkInCart(product._id)) {
-          cart = await updateItemInCart(product, "increment");
-        } else {
-          cart = await addToCart(product);
-        }
-      } else {
-        cart = await removeFromCart(product);
-      }
-      cartDispatch({ type: "UPDATE", cart });
-
-      if (type === "ADD") {
-        setAlertDisplay("inline-block");
-        setTimeout(() => setAlertDisplay("none"), 3000);
-      }
-    }
-
-    if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
-    }
-  }
-
-  async function wishlistHandler(product) {
-    if (loginStatus === true) {
-      let wishlist = [];
-      const type = checkInWishlist(product._id) ? "REMOVE" : "ADD";
-      if (type === "REMOVE") {
-        wishlist = await removeFromWishlist(product);
-      } else if (type === "ADD") {
-        wishlist = await addToWishlist(product);
-      }
-      wishlistDispatch({ type: "UPDATE", wishlist });
-    }
-
-    if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
-    }
-  }
+  const [wishlistHandler] = useWishlistHandler(setAlertDisplay);
+  const [updateItemHandler, cartHandler] = useCartHandler(setAlertDisplay);
 
   return (
     <div className="card">
