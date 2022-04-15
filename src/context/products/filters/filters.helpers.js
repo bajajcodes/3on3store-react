@@ -94,4 +94,5 @@ async function getProducts() {
   }
 }
 
+
 export { getFilteredProducts, getProducts };
