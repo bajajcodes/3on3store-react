@@ -132,7 +132,8 @@
     align-items: flex-start;
   }
 
-  .nav-link.dflex > span:first-child {
+  .nav-link.dflex > span:first-child,
+  .nav-link.dflex > div:first-child  {
     display: none;
   }
 

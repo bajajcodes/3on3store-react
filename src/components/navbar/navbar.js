@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./navbar.styles.css";
 import { logoImage } from "data";
-import { useAuthContext } from "context";
+import { useAuthContext, useWishlistContext, useCartContext } from "context";
 
 function Navbar() {
   const [toggleNavbarNav, setToggleNavbarNav] = useState("");
@@ -10,8 +10,16 @@ function Navbar() {
   const {
     authState: { loginStatus },
     authDispatch,
-    logout
+    logout,
   } = useAuthContext();
+  const {
+    wishlistState: { wishlist },
+    wishlistDispatch,
+  } = useWishlistContext();
+  const {
+    cartState: { cart },
+    cartDispatch,
+  } = useCartContext();
   const location = useLocation();
 
   function hamburgerMenuClickHandler() {
@@ -19,8 +27,10 @@ function Navbar() {
   }
 
   function logoutClickHandler() {
-    if (loginStatus) {  
+    if (loginStatus) {
       authDispatch({ type: "LOGIN" });
+      wishlistDispatch({type:"UPDATE", wishlist: []});
+      cartDispatch({type:"UPDATE", cart: []})
       logout();
     }
   }
@@ -100,7 +110,12 @@ function Navbar() {
             to="/wishlist"
             className="nav-link nav-link-with-hover-reset dflex"
           >
-            <span className="material-icons">favorite_border</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons"> favorite_border</span>
+              {wishlist.length>0 && (
+                <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
+              )}
+            </div>{" "}
             <span className="material-icons-txt">Wishlist</span>
           </Link>
         </li>
@@ -109,12 +124,18 @@ function Navbar() {
             to="/cart"
             className="nav-link nav-link-with-hover-reset  dflex"
           >
-            <span className="material-icons-outlined">shopping_cart</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons-outlined">shopping_cart</span>
+              {cart.length>0 && (
+                <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
+              )}
+            </div>
             <span className="material-icons-txt">Cart</span>
           </Link>
         </li>
       </ul>
     </nav>
+    //
   );
 }
 

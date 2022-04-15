@@ -17,3 +17,13 @@
 .footer-writer {
   align-items: flex-end;
 }
+
+@media (max-width:768px) {
+  .footer{
+    flex-direction: column;
+    row-gap: var(--size-7);
+  }
+  .footer-writer{
+    align-items: flex-start;
+  }
+}
