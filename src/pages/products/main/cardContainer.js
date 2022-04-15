@@ -1,5 +1,6 @@
 import { Card } from "components";
 import { useProducts } from "context";
+import { useSearchFeature } from "./useSearchFeature";
 
 function sastaLoader() {
   return (
@@ -15,15 +16,17 @@ function sastaLoader() {
 }
 
 function CardContainer() {
+  const [getSearchedProducts] = useSearchFeature();
   const { filteredProducts } = useProducts();
+  const products = getSearchedProducts(filteredProducts);
 
   return (
     <div className="products-cards-container">
-      {filteredProducts &&
-        filteredProducts.map((product) => (
+      {products &&
+        products.map((product) => (
           <Card product={product} key={product._id} />
         ))}
-      {!filteredProducts.length && sastaLoader()}
+      {!products.length && sastaLoader()}
     </div>
   );
 }

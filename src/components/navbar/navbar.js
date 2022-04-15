@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "./navbar.styles.css";
 import { logoImage } from "data";
 import { useAuthContext, useWishlistContext, useCartContext } from "context";
@@ -21,6 +21,8 @@ function Navbar() {
     cartDispatch,
   } = useCartContext();
   const location = useLocation();
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState("");
 
   function hamburgerMenuClickHandler() {
     setToggleNavbarNav((prevShow) => (prevShow ? "" : "show"));
@@ -29,8 +31,8 @@ function Navbar() {
   function logoutClickHandler() {
     if (loginStatus) {
       authDispatch({ type: "LOGIN" });
-      wishlistDispatch({type:"UPDATE", wishlist: []});
-      cartDispatch({type:"UPDATE", cart: []})
+      wishlistDispatch({ type: "UPDATE", wishlist: [] });
+      cartDispatch({ type: "UPDATE", cart: [] });
       logout();
     }
   }
@@ -50,11 +52,29 @@ function Navbar() {
         </Link>
       </div>
 
-      {location.pathname === "/products" && (
+      {location.pathname.startsWith("/products") && (
         <div className="search-box">
           <div className="input-group">
-            <input type="text" className="input" placeholder="Search" />
-            <button>
+            <input
+              type="text"
+              className="input"
+              placeholder="Search products..."
+              value={searchParams.get("filter") || ""}
+              onChange={(event) => {
+                let filter = event.target.value;
+                setFilter(filter);
+                if (filter) {
+                  setSearchParams({ filter });
+                } else {
+                  setSearchParams({});
+                }
+              }}
+            />
+            <button
+              onClick={() => {
+                setSearchParams({ filter });
+              }}
+            >
               <span className="material-icons input-group-icon">search</span>
             </button>
           </div>
@@ -112,7 +132,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons"> favorite_border</span>
-              {wishlist.length>0 && (
+              {wishlist.length > 0 && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>{" "}
@@ -126,7 +146,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons-outlined">shopping_cart</span>
-              {cart.length>0 && (
+              {cart.length > 0 && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>
@@ -135,7 +155,6 @@ function Navbar() {
         </li>
       </ul>
     </nav>
-    //
   );
 }
 
