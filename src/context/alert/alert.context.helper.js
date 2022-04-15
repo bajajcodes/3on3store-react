@@ -1,4 +1,4 @@
-function showAlert(alertDispatch, description, title, type) {
+function showAlert(alertDispatch, title, description, type) {
   alertDispatch({
     type: "SHOW_ALERT",
     payload: {

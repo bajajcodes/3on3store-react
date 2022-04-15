@@ -27,16 +27,16 @@ export function useCartHandler() {
     if (type === "decrement") {
       showAlert(
         alertDispatch,
-        product,
         `Quantity decreased to ${product.qty - 1}`,
+        product.title,
         "info"
       );
       hideAlert(alertDispatch);
     } else {
       showAlert(
         alertDispatch,
-        product,
         `Quantity increased to ${product.qty + 1}`,
+        product.title,
         "info"
       );
       hideAlert(alertDispatch);
@@ -61,18 +61,18 @@ export function useCartHandler() {
       cartDispatch({ type: "UPDATE", cart });
 
       if (type === "ADD") {
-        showAlert(alertDispatch, product, "Added to Cart", "success");
+        showAlert(alertDispatch, "Added to Cart", product.title, "success");
         hideAlert(alertDispatch);
       }
 
       if (type === "REMOVE") {
-        showAlert(alertDispatch, product, "Removed from Cart", "danger");
+        showAlert(alertDispatch, "Removed from Cart", product.title, "danger");
         hideAlert(alertDispatch);
       }
     }
 
     if (loginStatus === false) {
-      showAlert(alertDispatch, product, "Cannot add to Cart", "danger");
+      showAlert(alertDispatch, "Cannot add to Cart", product.title, "danger");
       hideAlert(alertDispatch);
     }
   }

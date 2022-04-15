@@ -19,7 +19,7 @@ export function useLoginValidation() {
       const from = location.state?.from || "/";
       navigate(from, { replace: true });
     } else if (loggedIn === false) {
-      showAlert(alertDispatch, info.message, "Login Failed", "danger");
+      showAlert(alertDispatch, "Login Failed", info.message,"danger");
       hideAlert(alertDispatch);
     }
   }

@@ -1,37 +1,6 @@
 import "./alert.styles.css";
 import { useAlert } from "context";
-
-function getIconType(alertType) {
-  if (alertType === "success") {
-    return "check_circle";
-  } else if (alertType === "danger") {
-    return "error";
-  } else if (alertType === "info") {
-    return "info";
-  }
-
-  return "";
-}
-
-function getColorAndBackground(alertType) {
-  if (alertType === "success") {
-    return {
-      background: "alert-bg-success",
-      color: "alert-color-success",
-    };
-  } else if (alertType === "danger") {
-    return {
-      background: "alert-bg-error",
-      color: "alert-color-error",
-    };
-  } else if (alertType === "info") {
-    return {
-      background: "alert-bg-info",
-      color: "alert-color-info",
-    };
-  }
-  return { background: "", color: "" };
-}
+import { getIconType, getColorAndBackground } from "./alert.helper";
 
 function Alert() {
   const { alertState } = useAlert();

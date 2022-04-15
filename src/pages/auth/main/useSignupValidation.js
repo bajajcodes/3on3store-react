@@ -52,8 +52,8 @@ export function useSignupValidation() {
     if (formFields["_password"] !== formFields["_confirmPassword"]) {
       showAlert(
         alertDispatch,
-        "Passwords do not match",
         "Input Passwords",
+        "Passwords do not match",
         "danger"
       );
       hideAlert(alertDispatch);
@@ -64,8 +64,8 @@ export function useSignupValidation() {
     ) {
       showAlert(
         alertDispatch,
-        "Passowrds are invalid.",
         "Input Passwords",
+        "Passowrds are invalid.",
         "danger"
       );
       hideAlert(alertDispatch);
@@ -87,7 +87,7 @@ export function useSignupValidation() {
         const from = location.state?.from || "/";
         navigate(from, { replace: true });
       } else if (isSignuped === false) {
-        showAlert(alertDispatch, info.message, "Signup Failed", "danger");
+        showAlert(alertDispatch, "Signup Failed", info.message, "danger");
         hideAlert(alertDispatch);
       }
     }

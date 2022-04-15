@@ -1,8 +1,11 @@
 .alert {
   display: none;
-  position: sticky;
-  top: 0;
-  right: 18vw;
+  position: absolute;
+  top: 8vh;
+  right: 8vw;
+  width: 400px;
+  z-index: 12;
+  max-width: 500px;
 }
 
 .font-wt-700 {
@@ -11,8 +14,8 @@
 
 @media (max-width: 768px) {
   .alert {
-    /* right: initial;
-    left: 0; */
+    top: 10vh;
+    right: 10vw;
     min-width: 10vw !important;
     max-width: 60vw !important;  
   }
