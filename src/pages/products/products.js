@@ -1,5 +1,4 @@
 import { Header, Footer } from "components/index";
-import { Alert } from "components";
 import { Aside } from "./aside/aside";
 import { Main } from "./main/main";
 import { useEffect } from "react";
@@ -14,7 +13,6 @@ function Products() {
 
   return (
     <div className="products-wrapper">
-      <Alert />
       <Header />
       <Aside />
       <Main />

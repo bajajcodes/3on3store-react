@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { ErrorAlert } from "../alert/alert";
 import {useSignupValidation} from "./useSignupValidation";
 
 function AuthSignup() {
