@@ -1,0 +1,19 @@
+.alert {
+  display: none;
+  position: sticky;
+  top: 0;
+  right: 18vw;
+}
+
+.font-wt-700 {
+  font-weight: var(--weight-bold);
+}
+
+@media (max-width: 768px) {
+  .alert {
+    /* right: initial;
+    left: 0; */
+    min-width: 10vw !important;
+    max-width: 60vw !important;  
+  }
+}
