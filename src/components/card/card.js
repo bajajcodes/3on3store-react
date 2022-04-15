@@ -1,34 +1,19 @@
 import { Star } from "../star/star";
 import { useLocation } from "react-router-dom";
 import { useWishlistContext, useCartContext } from "context";
-import { useState } from "react";
-import { useAuthContext } from "context";
 import { useWishlistHandler } from "./useWishlistHandler";
 import { useCartHandler } from "./useCartHandler";
 
 function Card({ product }) {
   const { _id, title, price, description, image, rating, qty } = product;
-  const [alertDisplay, setAlertDisplay] = useState("none");
   const { pathname } = useLocation();
   const { checkInWishlist } = useWishlistContext();
   const { checkInCart } = useCartContext();
-  const {
-    authState: { loginStatus },
-  } = useAuthContext();
-  const [wishlistHandler] = useWishlistHandler(setAlertDisplay);
-  const [updateItemHandler, cartHandler] = useCartHandler(setAlertDisplay);
+  const [wishlistHandler] = useWishlistHandler();
+  const [updateItemHandler, cartHandler] = useCartHandler();
 
   return (
     <div className="card">
-      <div className="alert alert-bg-success" style={{ display: alertDisplay }}>
-        <div>
-          <div className="alert-message">
-            {loginStatus
-              ? `${title}, added to cart.`
-              : `Login First, to make it happen.`}
-          </div>
-        </div>
-      </div>
       <div>
         <img src={image} alt={description} className="card-img" />
       </div>

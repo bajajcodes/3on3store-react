@@ -1,10 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import { ErrorAlert } from "../alert/alert";
 import { useLoginValidation } from "./useLoginValidation";
 
 function AuthLogin() {
-  const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
   const [
     _email,
     _password,
@@ -12,15 +9,11 @@ function AuthLogin() {
     setPassword,
     loginClickHandler,
     fillTestLoginCredentials,
-  ] = useLoginValidation(setAlertInfo);
+  ] = useLoginValidation();
 
 
   return (
     <main className="auth-main">
-      <ErrorAlert
-        message={alertInfo.message}
-        displayValue={alertInfo.display}
-      />
 
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">

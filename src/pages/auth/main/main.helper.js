@@ -43,6 +43,9 @@ async function login({ _email, _password }) {
     };
 
     const response = await axios.post("/api/auth/login", body);
+    if (response.status !== 200) {
+      throw new Error(`Invalid credentials.`);
+    }
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "login successful." };
   } catch (exception) {
@@ -101,6 +104,9 @@ async function signup({ _email, _password, _firstName, _lastName }) {
       lastName: _lastName,
     };
     const response = await axios.post("/api/auth/signup", body);
+    if (response.status !== 201) {
+      throw new Error(`Invalid credentials.`);
+    }
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "signup successful." };
   } catch (exception) {

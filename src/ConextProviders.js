@@ -3,18 +3,19 @@ import {
   WishlistProvider,
   CartProvider,
   AuthProvider,
+  AlertProvider,
 } from "context";
 
-function ContextProvider({children}) {
+function ContextProvider({ children }) {
   return (
     <ProductProvider>
-      <AuthProvider>
-        <CartProvider>
-          <WishlistProvider>
-            {children}
-          </WishlistProvider>
-        </CartProvider>
-      </AuthProvider>
+      <AlertProvider>
+        <AuthProvider>
+          <CartProvider>
+            <WishlistProvider>{children}</WishlistProvider>
+          </CartProvider>
+        </AuthProvider>
+      </AlertProvider>
     </ProductProvider>
   );
 }
