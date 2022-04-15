@@ -28,6 +28,22 @@ function checkIsTokenExsist() {
   return token ? true : false;
 }
 
+async function logout(){
+
+  if (localStorage.getItem("token")) {
+    localStorage.removeItem("token");
+  } else {
+    throw new Exception("User is logged in, but token does not exsist.");
+  }
+
+  if (localStorage.getItem("userInfo")) {
+    localStorage.removeItem("userInfo");
+  } else {
+    throw new Exception("User is logged in, but token does not exsist.");
+  }
+
+}
+
 async function login({ _email, _password }) {
   try {
     const body = {
@@ -59,4 +75,4 @@ async function signup({ _email, _password, _firstName, _lastName }) {
   }
 }
 
-export { checkIsTokenExsist, login, signup };
+export { checkIsTokenExsist, login, signup, logout };

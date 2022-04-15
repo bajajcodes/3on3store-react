@@ -1,6 +1,6 @@
 import { useContext, createContext, useReducer } from "react";
 import { reducerFunction } from "./auth.reducer";
-import { checkIsTokenExsist, login, signup } from "./auth.context.helper";
+import { checkIsTokenExsist, login, logout, signup } from "./auth.context.helper";
 
 const AuthContext = createContext(null);
 
@@ -11,7 +11,7 @@ function AuthProvider({ children }) {
   });
 
   return (
-    <AuthContext.Provider value={{ authState, authDispatch, login, signup }}>
+    <AuthContext.Provider value={{ authState, authDispatch, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );

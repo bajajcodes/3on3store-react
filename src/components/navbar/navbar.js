@@ -10,6 +10,7 @@ function Navbar() {
   const {
     authState: { loginStatus },
     authDispatch,
+    logout
   } = useAuthContext();
   const location = useLocation();
 
@@ -18,13 +19,9 @@ function Navbar() {
   }
 
   function logoutClickHandler() {
-    if (loginStatus) {
-      if (localStorage.getItem("token")) {
-        localStorage.removeItem("token");
-        authDispatch({ type: "LOGIN" });
-      } else {
-        throw new Exception("User is logged in, but token does not exsist.");
-      }
+    if (loginStatus) {  
+      authDispatch({ type: "LOGIN" });
+      logout();
     }
   }
 

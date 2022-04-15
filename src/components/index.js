@@ -4,3 +4,4 @@ export { Navbar } from "./navbar/navbar";
 export { Card } from "./card/card";
 export { ImageSlider } from "./imageslider/imageslider";
 export { Star } from "./star/star";
+export {LinkButton} from "./linkbutton/linkbutton";
