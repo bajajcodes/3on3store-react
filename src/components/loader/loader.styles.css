@@ -1,9 +1,9 @@
 .loader-container {
   z-index: 20;
-  background: var(--grey-color);
+  background: transparent;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 0);
+  transform: translate(-30%, 0);
   width: max-content;
   display: none;
   justify-content: center;
@@ -31,5 +31,11 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width:768px) {
+  .loader-container{
+    transform: translate(-50%, 0);
   }
 }

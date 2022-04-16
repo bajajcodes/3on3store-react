@@ -94,5 +94,17 @@ async function getProducts() {
   }
 }
 
+async function getProduct(productId) {
+  try {
+    const response = await axios.get(`/api/products/${productId}`);
+    if (response.status !== 200) {
+      throw new Error("Getting product failed, Invalid product credentials");
+    }
+    const product = response.data?.product;
+    return { product, exception: null };
+  } catch (exception) {
+    return { product: null, exception };
+  }
+}
 
-export { getFilteredProducts, getProducts };
+export { getFilteredProducts, getProducts, getProduct };

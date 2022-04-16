@@ -202,15 +202,16 @@ input[type="radio"]:checked {
   cursor: pointer;
   margin: auto;
   z-index: 1;
-  min-height: calc(var(--size-9) * 31);
+  min-height: calc(var(--size-9) * 29);
   max-height: calc(var(--size-9) * 34);
   margin-bottom: var(--size-9);
+  transform: scale(0.9);
 }
 
 .products-cards-container .card:hover,
 .cards-container .card:hover {
-  box-shadow: var(--size-3) var(--size-3) 0 #000;
-  transform: scale(1.1);
+  box-shadow: var(--size-5) var(--size-5) 0 var(--card-box-shadow);
+  transform: scale(1);
   z-index: 4;
 }
 
@@ -279,13 +280,6 @@ input[type="radio"]:checked {
 .btn.btn-outline-secondary {
   border: 0.0625rem solid var(--black);
 }
-
-/* .card-text{
-  min-height: max-content;
-  max-height: 50px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-} */
 
 .card-text .star {
   vertical-align: sub;

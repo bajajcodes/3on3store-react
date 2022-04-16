@@ -31,7 +31,7 @@ const slides = {
   sliderImages: [
     {
       source: `${process.env.PUBLIC_URL}/images/Hangout-rafiki.svg`,
-      category: "social skills",
+      category: "social",
     },
     {
       source: `${process.env.PUBLIC_URL}/images/Workout-rafiki.svg`,

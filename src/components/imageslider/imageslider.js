@@ -12,7 +12,7 @@ function ImageSlider() {
       <div id="arrow-left" className="arrow" onClick={() => slideLeft()}></div>
 
       {sliderImages.map(({ source, category }, index) => (
-        <Link to={`/products/${category}`} key={index}>
+        <Link to={`/category/${category}`} key={index}>
           <div
             className="slide"
             style={{

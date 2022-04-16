@@ -1,5 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, Login, Signup, Products, Wishlist, Cart, NotFound } from "pages";
+import {
+  Home,
+  Login,
+  Signup,
+  Products,
+  Wishlist,
+  Cart,
+  NotFound,
+  Product,
+} from "pages";
 import { RequiresAuth } from "./RequiresAuth";
 import { CheckAuth } from "./CheckAuth";
 
@@ -24,9 +33,13 @@ function RouteSwitch() {
             </CheckAuth>
           }
         />
-        <Route path="/products" element={<Products />}>
-          <Route path=":category" element={<Products />} />
+        <Route path="/category" element={<Products />}>
+          <Route path="social" element={<Products />} />
+          <Route path="strength" element={<Products />} />
+          <Route path="intelligence" element={<Products />} />
         </Route>
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:productId" element={<Product />} />
         <Route
           path="/wishlist"
           element={

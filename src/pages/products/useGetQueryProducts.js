@@ -1,18 +1,18 @@
 import { useProducts } from "context";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export function useGetQueryProducts() {
   const { productsDispatch } = useProducts();
-  const { category } = useParams();
-
+  const location = useLocation();
+  const { pathname } = location;
   async function getQueriedCategoryProducts() {
-
+    const category = pathname.split("/")[2] ?? "";
     if (category) {
       if (category === "intelligence") {
         productsDispatch({ type: "CATEGORY_INTELLIGENCE" });
       }
 
-      if (category === "social skills") {
+      if (category === "social") {
         productsDispatch({ type: "CATEGORY_SOCIAL_SKILLS" });
       }
 
