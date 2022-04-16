@@ -5,7 +5,6 @@ import {
   AuthProvider,
   AlertProvider,
 } from "context";
-
 function ContextProvider({ children }) {
   return (
     <ProductProvider>
