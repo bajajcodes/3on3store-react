@@ -9,7 +9,11 @@ import {
   productsReducer,
   defaultFiltersState,
 } from "./products.filters.reducer";
-import { getProducts, getFilteredProducts } from "./filters.helpers";
+import {
+  getProducts,
+  getProduct,
+  getFilteredProducts,
+} from "./filters.helpers";
 
 const ProductsContext = createContext(null);
 
@@ -29,7 +33,7 @@ function ProductProvider({ children }) {
 
   return (
     <ProductsContext.Provider
-      value={{ productsState, productsDispatch, filteredProducts }}
+      value={{ productsState, productsDispatch, filteredProducts, getProduct }}
     >
       {children}
     </ProductsContext.Provider>

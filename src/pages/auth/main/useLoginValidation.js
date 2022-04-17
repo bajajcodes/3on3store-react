@@ -1,32 +1,26 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useAuthContext } from "context";
+import { useAuthContext, useAlert } from "context";
 import { getUserLogin } from "./main.helper";
 
-export function useLoginValidation(setAlertInfo) {
+export function useLoginValidation() {
   const [_email, setEmail] = useState("");
   const [_password, setPassword] = useState("");
   const { authDispatch } = useAuthContext();
+  const { alertDispatch, showAlert, hideAlert } = useAlert();
   const location = useLocation();
   const navigate = useNavigate();
 
-  function loginHandler(loggedIn, setAlertInfo, info) {
+  function loginHandler(loggedIn, info) {
     if (loggedIn) {
       authDispatch({
-        type: "LOGIN"
+        type: "LOGIN",
       });
       const from = location.state?.from || "/";
       navigate(from, { replace: true });
     } else if (loggedIn === false) {
-      setAlertInfo(info);
-      setTimeout(
-        () => setAlertInfo((prev) => ({
-          ...prev,
-          display: !prev.display,
-          message: ""
-        })),
-        3000
-      );
+      showAlert(alertDispatch, "Login Failed", info.message,"danger");
+      hideAlert(alertDispatch);
     }
   }
 
@@ -38,7 +32,7 @@ export function useLoginValidation(setAlertInfo) {
     setEmail("");
     setPassword("");
 
-    loginHandler(loggedIn, setAlertInfo, info);
+    loginHandler(loggedIn, info);
   }
 
   async function fillTestLoginCredentials(event) {

@@ -1,13 +1,17 @@
 import { useWishlistContext } from "context";
-import { useAuthContext } from "context";
+import { useAuthContext, useAlert } from "context";
 
-export function useWishlistHandler(setAlertDisplay) {
+export function useWishlistHandler() {
   const {
-    wishlistDispatch, checkInWishlist, addToWishlist, removeFromWishlist,
+    wishlistDispatch,
+    checkInWishlist,
+    addToWishlist,
+    removeFromWishlist,
   } = useWishlistContext();
   const {
     authState: { loginStatus },
   } = useAuthContext();
+  const { alertDispatch, showAlert, hideAlert } = useAlert();
 
   async function wishlistHandler(product) {
     if (loginStatus === true) {
@@ -18,12 +22,31 @@ export function useWishlistHandler(setAlertDisplay) {
       } else if (type === "ADD") {
         wishlist = await addToWishlist(product);
       }
+
       wishlistDispatch({ type: "UPDATE", wishlist });
+
+      if (type === "ADD") {
+        showAlert(alertDispatch, "Added to Wishlist", product.title, "success");
+        hideAlert(alertDispatch);
+      } else {
+        showAlert(
+          alertDispatch,
+          "Removed from Wishlist",
+          product.title,
+          "danger"
+        );
+        hideAlert(alertDispatch);
+      }
     }
 
     if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
+      showAlert(
+        alertDispatch,
+        "Cannot add to Wishlist",
+        product.title,
+        "danger"
+      );
+      hideAlert(alertDispatch);
     }
   }
 

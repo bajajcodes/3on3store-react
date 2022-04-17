@@ -1,14 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { useCartContext } from "context";
-import { useAuthContext } from "context";
+import { useAuthContext, useAlert } from "context";
 
-export function useCartHandler(setAlertDisplay) {
+export function useCartHandler() {
   const {
-    checkInCart, cartDispatch, addToCart, removeFromCart, updateItemInCart,
+    checkInCart,
+    cartDispatch,
+    addToCart,
+    removeFromCart,
+    updateItemInCart,
   } = useCartContext();
   const {
     authState: { loginStatus },
   } = useAuthContext();
+  const { alertDispatch, showAlert, hideAlert } = useAlert();
   const { pathname } = useLocation();
 
   async function updateItemHandler(product, type) {
@@ -19,6 +24,23 @@ export function useCartHandler(setAlertDisplay) {
       cart = await updateItemInCart(product, type);
     }
     cartDispatch({ type: "UPDATE", cart });
+    if (type === "decrement") {
+      showAlert(
+        alertDispatch,
+        `Quantity decreased to ${product.qty - 1}`,
+        product.title,
+        "info"
+      );
+      hideAlert(alertDispatch);
+    } else {
+      showAlert(
+        alertDispatch,
+        `Quantity increased to ${product.qty + 1}`,
+        product.title,
+        "info"
+      );
+      hideAlert(alertDispatch);
+    }
   }
 
   async function cartHandler(product) {
@@ -39,14 +61,19 @@ export function useCartHandler(setAlertDisplay) {
       cartDispatch({ type: "UPDATE", cart });
 
       if (type === "ADD") {
-        setAlertDisplay("inline-block");
-        setTimeout(() => setAlertDisplay("none"), 3000);
+        showAlert(alertDispatch, "Added to Cart", product.title, "success");
+        hideAlert(alertDispatch);
+      }
+
+      if (type === "REMOVE") {
+        showAlert(alertDispatch, "Removed from Cart", product.title, "danger");
+        hideAlert(alertDispatch);
       }
     }
 
     if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
+      showAlert(alertDispatch, "Cannot add to Cart", product.title, "danger");
+      hideAlert(alertDispatch);
     }
   }
 

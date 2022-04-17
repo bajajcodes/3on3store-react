@@ -1,0 +1,22 @@
+.alert {
+  display: none;
+  position: absolute;
+  top: 8vh;
+  right: 8vw;
+  width: 400px;
+  z-index: 12;
+  max-width: 500px;
+}
+
+.font-wt-700 {
+  font-weight: var(--weight-bold);
+}
+
+@media (max-width: 768px) {
+  .alert {
+    top: 10vh;
+    right: 10vw;
+    min-width: 10vw !important;
+    max-width: 60vw !important;  
+  }
+}

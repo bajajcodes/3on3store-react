@@ -5,9 +5,9 @@ import {
   togglePasswordInputType,
   getUserSignup,
 } from "./main.helper";
-import { useAuthContext } from "context";
+import { useAuthContext, useAlert } from "context";
 
-export function useSignupValidation(setAlertInfo) {
+export function useSignupValidation() {
   const [formFields, setFormFields] = useState({
     _firstName: "",
     _lastName: "",
@@ -24,6 +24,7 @@ export function useSignupValidation(setAlertInfo) {
   });
   const navigate = useNavigate();
   const { authDispatch } = useAuthContext();
+  const { alertDispatch, showAlert, hideAlert } = useAlert();
   const location = useLocation();
 
   function handleChange(event) {
@@ -49,37 +50,25 @@ export function useSignupValidation(setAlertInfo) {
     event.preventDefault();
 
     if (formFields["_password"] !== formFields["_confirmPassword"]) {
-      setAlertInfo({
-        display: true,
-        message: "Passwords do not match",
-      });
-      setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
+      showAlert(
+        alertDispatch,
+        "Input Passwords",
+        "Passwords do not match",
+        "danger"
       );
+      hideAlert(alertDispatch);
     } else if (
       (formFields["_password"].length === 0 ||
         formFields["_confirmPassword"].length === 0) &&
       formFields["_lastName"].length
     ) {
-      setAlertInfo({
-        display: true,
-        message: "Check Passwords.",
-      });
-      setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
+      showAlert(
+        alertDispatch,
+        "Input Passwords",
+        "Passowrds are invalid.",
+        "danger"
       );
+      hideAlert(alertDispatch);
     } else if (formFields["_password"] === formFields["_confirmPassword"]) {
       const { isSignuped, info } = await getUserSignup(formFields);
 
@@ -98,16 +87,8 @@ export function useSignupValidation(setAlertInfo) {
         const from = location.state?.from || "/";
         navigate(from, { replace: true });
       } else if (isSignuped === false) {
-        setAlertInfo(info);
-        setTimeout(
-          () =>
-            setAlertInfo((prev) => ({
-              ...prev,
-              display: !prev.display,
-              message: "",
-            })),
-          3000
-        );
+        showAlert(alertDispatch, "Signup Failed", info.message, "danger");
+        hideAlert(alertDispatch);
       }
     }
   }

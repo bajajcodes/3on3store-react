@@ -1,9 +1,0 @@
-.alert {
-  min-width: 400px;
-  max-width: 500px;
-  position: absolute;
-  border: 1px solid;
-  transform: translate(50%,50%);
-  box-shadow: none;
-  z-index: 10;
-}

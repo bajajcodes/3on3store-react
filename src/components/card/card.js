@@ -1,45 +1,39 @@
 import { Star } from "../star/star";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useWishlistContext, useCartContext } from "context";
-import { useState } from "react";
-import { useAuthContext } from "context";
 import { useWishlistHandler } from "./useWishlistHandler";
 import { useCartHandler } from "./useCartHandler";
 
-function Card({ product }) {
+function Card({ product, isDescNeeded = false }) {
   const { _id, title, price, description, image, rating, qty } = product;
-  const [alertDisplay, setAlertDisplay] = useState("none");
   const { pathname } = useLocation();
   const { checkInWishlist } = useWishlistContext();
   const { checkInCart } = useCartContext();
-  const {
-    authState: { loginStatus },
-  } = useAuthContext();
-  const [wishlistHandler] = useWishlistHandler(setAlertDisplay);
-  const [updateItemHandler, cartHandler] = useCartHandler(setAlertDisplay);
+  const [wishlistHandler] = useWishlistHandler();
+  const [updateItemHandler, cartHandler] = useCartHandler();
 
   return (
     <div className="card">
-      <div className="alert alert-bg-success" style={{ display: alertDisplay }}>
-        <div>
-          <div className="alert-message">
-            {loginStatus
-              ? `${title}, added to cart.`
-              : `Login First, to make it happen.`}
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src={image} alt={description} className="card-img" />
-      </div>
+      <Link to={`/products/${product._id}`} key={product._id}>
+        <img
+          src={image}
+          alt={description}
+          className="card-img"
+          loading="lazy"
+        />
+      </Link>
+
       <div className="card-body">
-        <div className="card-heading">
-          <h5 className="card-title">{title}</h5>
-          <h6 className="card-subtitle card-price">₹{price}</h6>
-        </div>
-        <p className="card-text">
-          <Star marked={true} />({rating})
-        </p>
+        <Link to={`/products/${product._id}`} key={product._id}>
+          <div className="card-heading">
+            <h5 className="card-title">{title}</h5>
+            <h6 className="card-subtitle card-price">₹{price}</h6>
+          </div>
+          {isDescNeeded && <p className="card-text">{description}</p>}
+          <p className="card-text">
+            <Star marked={true} />({rating})
+          </p>
+        </Link>
         <span
           className=" card-img-dismiss-overlay"
           onClick={() => wishlistHandler(product)}
