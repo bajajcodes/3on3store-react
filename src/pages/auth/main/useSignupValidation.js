@@ -48,7 +48,6 @@ export function useSignupValidation() {
 
   async function signupClickHandler(event) {
     event.preventDefault();
-
     if (formFields["_password"] !== formFields["_confirmPassword"]) {
       showAlert(
         alertDispatch,

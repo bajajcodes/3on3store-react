@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import {useSignupValidation} from "./useSignupValidation";
 
 function AuthSignup() {
 
-  const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
   const [
     formFields,
     passwordFieldsIconsToggle,
     signupClickHandler,
     handlePasswordIconsClick,
     handleChange,
-  ] = useSignupValidation(setAlertInfo);
+  ] = useSignupValidation();
 
   return (
     <main className="auth-main">
-      <ErrorAlert
-        message={alertInfo.message}
-        displayValue={alertInfo.display}
-      />
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Email</span>

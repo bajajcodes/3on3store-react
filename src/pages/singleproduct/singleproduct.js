@@ -31,7 +31,7 @@ function Product() {
           </h2>
         )}
         {product && <Card product={product} isDescNeeded={true} />}
-        {product === null && <LinkButton to="/products" text="Browse More" />}
+        {!loader && <LinkButton to="/products" text="Browse More" />}
       </div>
       <Footer />
     </div>

@@ -51,7 +51,7 @@ function Navbar() {
           <span className="estore-name">3 on 3 Store</span>
         </Link>
       </div>
-
+      {console.log({wishlist, cart})}
       {location.pathname.startsWith("/products") && (
         <div className="search-box">
           <div className="input-group">
@@ -132,7 +132,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons"> favorite_border</span>
-              {wishlist.length > 0 && (
+              {wishlist.length > 0  && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>{" "}
@@ -146,7 +146,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons-outlined">shopping_cart</span>
-              {cart.length > 0 && (
+              {cart.length > 0  && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>

@@ -16,7 +16,7 @@
   .alert {
     top: 10vh;
     right: 10vw;
-    min-width: 10vw !important;
+    width: 50vw !important;
     max-width: 60vw !important;  
   }
 }
