@@ -24,7 +24,6 @@
 
 .single-product .card-img {
   height: 450px;
-  height: 450px;
 }
 
 .single-product .lb-center {
@@ -35,7 +34,7 @@
 
 @media (max-width: 768px) {
   .single-product {
-    width: 100vw;
+    width: 80vw;
     max-width: 80vw;
     margin: 4vh auto;
   }
