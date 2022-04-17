@@ -51,7 +51,6 @@ function Navbar() {
           <span className="estore-name">3 on 3 Store</span>
         </Link>
       </div>
-      {console.log({wishlist, cart})}
       {location.pathname.startsWith("/products") && (
         <div className="search-box">
           <div className="input-group">
