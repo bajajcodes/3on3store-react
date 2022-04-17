@@ -8,6 +8,7 @@ import {
   Cart,
   NotFound,
   Product,
+  Profile,
 } from "pages";
 import { RequiresAuth } from "./RequiresAuth";
 import { CheckAuth } from "./CheckAuth";
@@ -56,7 +57,14 @@ function RouteSwitch() {
             </RequiresAuth>
           }
         />
-        <Route path="/profile" element={<Home />} />
+        <Route
+          path="/profile"
+          element={
+            <RequiresAuth>
+              <Profile />
+            </RequiresAuth>
+          }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

@@ -33,13 +33,13 @@ async function logout(){
   if (localStorage.getItem("token")) {
     localStorage.removeItem("token");
   } else {
-    throw new Exception("User is logged in, but token does not exsist.");
+    throw new Error("User is logged in, but token does not exsist.");
   }
 
   if (localStorage.getItem("userInfo")) {
     localStorage.removeItem("userInfo");
   } else {
-    throw new Exception("User is logged in, but token does not exsist.");
+    throw new Error("User is logged in, but token does not exsist.");
   }
 
 }
