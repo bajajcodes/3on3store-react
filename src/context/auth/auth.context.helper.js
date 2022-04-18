@@ -110,7 +110,7 @@ async function logout() {
   if (localStorage.getItem("userInfo")) {
     localStorage.removeItem("userInfo");
   } else {
-    throw new Error("User is logged in, but token does not exsist.");
+    throw new Error("User is logged in, but user Info does not exsist.");
   }
 }
 
