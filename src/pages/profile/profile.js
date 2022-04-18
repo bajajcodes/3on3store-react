@@ -1,11 +1,9 @@
 import "./profile.styles.css";
+import { useAuthContext } from "context";
 
-function getUserInfo() {
-  return JSON.parse(localStorage.getItem("userInfo"));
-}
 
 function Profile() {
-  const userInfo = getUserInfo();
+  const {authState: {userInfo}} = useAuthContext();
 
   //@TODO: This says I dont understand "this"
   function getItem(item) {

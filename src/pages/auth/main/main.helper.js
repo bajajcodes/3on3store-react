@@ -13,6 +13,7 @@ function cacheCredentialsToLocalStorage(response) {
         email,
         firstName,
         lastName,
+        addressess : [],
       });
     }
     if (foundUser) {
@@ -38,7 +39,7 @@ function getDefaultAddresses() {
       _id: uuid(),
       name: "SHubham Bajaj",
       address: "830 Vishkarma Mohala City Center Road",
-      localiy: "Near sita ram mandir",
+      locality: "Near sita ram mandir",
       city: "Yamuna Nagar",
       pincode: "135001",
       state: "Haryana",
@@ -49,7 +50,7 @@ function getDefaultAddresses() {
       _id: uuid(),
       name: "Gourav Arora",
       address: "Vishnu nagar farakpur jagadhri workshop",
-      localiy: "Railway fatak",
+      locality: "Railway fatak",
       city: "Jagadhri railway workshop",
       pincode: "135002",
       state: "Haryana",

@@ -1,19 +1,31 @@
 import "./addressess.styles.css";
-
-function getAddressess() {
-  const userInfo =  JSON.parse(localStorage.getItem("userInfo"));
-  return userInfo.addressess;
-}
+import { EditAddress } from "./editaddress/editadress";
+import { useAuthContext } from "context";
+import { useAddressAllInfo } from "./useAddressAllInfo";
 
 function Addressess() {
-  const addressess = getAddressess();
+  const {
+    authState: { userInfo },
+    authDispatch,
+    removeAddress,
+  } = useAuthContext();
+  const [newAddress, addressAllInfo, setAddressAllInfo, addressInputBtnHandler] =
+    useAddressAllInfo();
+
   return (
     <section className="addressess-section common-section">
       <div className="addressess-section-header">
-        <button className="btn btn-secondary bg-grey">+ Add NEW ADDRESS</button>
+        <button
+          className="btn btn-secondary bg-grey"
+          onClick={(e) =>
+            addressInputBtnHandler(e, newAddress, "Add New Address")
+          }
+        >
+          + Add NEW ADDRESS
+        </button>
       </div>
       <div className="addressess-section-body">
-        {addressess.map((address) => (
+        {userInfo.addressess.map((address) => (
           <div className="address mt-9" key={address._id}>
             <div className="grid2D-col address-info">
               <div>
@@ -31,97 +43,34 @@ function Addressess() {
               )}
             </div>
             <div className="grid2D-col address-actions">
-              <button>Edit</button>
-              <button>Remove</button>
+              <button
+                onClick={(e) =>
+                  addressInputBtnHandler(e, address, "Edit Address")
+                }
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => {
+                  const userInfo = removeAddress(address);
+                  authDispatch({ type: "UPDATE_USER_INFO", payload: userInfo });
+                }}
+              >
+                Remove
+              </button>
             </div>
           </div>
         ))}
-        {/* <div className="address mt-9">
-          <div className="grid2D-col address-info">
-            <div>
-              <h4 className="mb-10">Name</h4>
-              <p>address</p>
-              <p>Locality</p>
-              <p>city and pincode</p>
-              <p>state</p>
-              <p>Mobile: Number</p>
-            </div>
-            <div className="align-text-right">tag</div>
-          </div>
-          <div className="grid2D-col address-actions">
-            <button>Edit</button>
-            <button>Remove</button>
-          </div>
-        </div>
-        <div className="address mt-9">
-          <div className="grid2D-col address-info">
-            <div>
-              <h4 className="mb-10">Name</h4>
-              <p>address</p>
-              <p>Locality</p>
-              <p>city and pincode</p>
-              <p>state</p>
-              <p>Mobile: Number</p>
-            </div>
-            <div className="align-text-right">tag</div>
-          </div>
-          <div className="grid2D-col address-actions">
-            <button>Edit</button>
-            <button>Remove</button>
-          </div>
-        </div>
-        <div className="address mt-9">
-          <div className="grid2D-col address-info">
-            <div>
-              <h4 className="mb-10">Name</h4>
-              <p>address</p>
-              <p>Locality</p>
-              <p>city and pincode</p>
-              <p>state</p>
-              <p>Mobile: Number</p>
-            </div>
-            <div className="align-text-right">tag</div>
-          </div>
-          <div className="grid2D-col address-actions">
-            <button>Edit</button>
-            <button>Remove</button>
-          </div>
-        </div>
-        <div className="address mt-9">
-          <div className="grid2D-col address-info">
-            <div>
-              <h4 className="mb-10">Name</h4>
-              <p>address</p>
-              <p>Locality</p>
-              <p>city and pincode</p>
-              <p>state</p>
-              <p>Mobile: Number</p>
-            </div>
-            <div className="align-text-right">tag</div>
-          </div>
-          <div className="grid2D-col address-actions">
-            <button>Edit</button>
-            <button>Remove</button>
-          </div>
-        </div>
-        <div className="address mt-9">
-          <div className="grid2D-col address-info">
-            <div>
-              <h4 className="mb-10">Name</h4>
-              <p>address</p>
-              <p>Locality</p>
-              <p>city and pincode</p>
-              <p>state</p>
-              <p>Mobile: Number</p>
-            </div>
-            <div className="align-text-right">tag</div>
-          </div>
-          <div className="grid2D-col address-actions">
-            <button>Edit</button>
-            <button>Remove</button>
-          </div>
-        </div> */}
       </div>
+      {userInfo.addressess.length === 0 && (
+        <h3>No address found, add address by clicking above ☝️</h3>
+      )}
+      <EditAddress
+        display={addressAllInfo.addressEditorDisplay}
+        address={addressAllInfo.activeAddress}
+        setDisplay={setAddressAllInfo}
+        headerText={addressAllInfo.headerText}
+      />
     </section>
   );
 }
