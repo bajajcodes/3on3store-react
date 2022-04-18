@@ -6,3 +6,5 @@ export { Wishlist } from "./wishlist/wishlist";
 export { NotFound } from "./notfound/NotFound";
 export {Product} from "./singleproduct/singleproduct";
 export {Profile} from "./profile/profile";
+export {Account} from "./account/account";
+export {Addressess} from "./addressess/addressess";

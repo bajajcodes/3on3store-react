@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+} from "react-router-dom";
 import {
   Home,
   Login,
@@ -9,6 +14,8 @@ import {
   NotFound,
   Product,
   Profile,
+  Account,
+  Addressess,
 } from "pages";
 import { RequiresAuth } from "./RequiresAuth";
 import { CheckAuth } from "./CheckAuth";
@@ -58,13 +65,31 @@ function RouteSwitch() {
           }
         />
         <Route
-          path="/profile"
+          path="/account"
           element={
             <RequiresAuth>
-              <Profile />
+              <Account />
             </RequiresAuth>
           }
-        />
+        >
+          <Route index element={<Profile />} />
+          <Route
+            path="/account/profile"
+            element={
+              <RequiresAuth>
+                <Profile />
+              </RequiresAuth>
+            }
+          />
+          <Route
+            path="/account/addressess"
+            element={
+              <RequiresAuth>
+                <Addressess />
+              </RequiresAuth>
+            }
+          />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
