@@ -1,0 +1,77 @@
+.address-editor-container {
+  position: fixed;
+  z-index: 30;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.address-form {
+  border: var(--size-1) solid;
+  border: var(--size-1) double;
+  width: 30vw;
+  max-width: 50vw;
+  background: var(--white);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  flex-direction: column;
+  overflow: auto;
+  z-index: 40;
+  position: fixed;
+}
+
+.address-form-header,
+.address-form-body {
+  padding: var(--size-9);
+}
+
+.address-form-header {
+  border-bottom: var(--size-1) solid;
+}
+
+.address-form-body {
+  padding-top: 0;
+}
+
+.address-form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.address-form-footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.address-form-footer > * {
+  flex: 1;
+  padding: var(--size-5);
+  cursor: pointer;
+}
+
+.address-form-footer .btn-outline-secondary:hover {
+  background: var(--white);
+  color: var(--black);
+}
+
+.form-input-field {
+  margin-top: var(--size-9);
+  padding: var(--size-5);
+}
+
+@media (max-width: 768px) {
+  .address-form {
+    border: var(--size-1) solid;
+    border: var(--size-1) double;
+    width: 80vw;
+    max-width: unset;
+  }
+}
