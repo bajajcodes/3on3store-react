@@ -145,4 +145,4 @@ async function signup({ _email, _password, _firstName, _lastName }) {
   }
 }
 
-export { checkIsTokenExsist, getuserInfo, removeAddress, saveAddress, login, signup, logout };
+export { checkIsTokenExsist,removeAddress, saveAddress, login, signup, logout };

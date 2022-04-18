@@ -1,15 +1,10 @@
-function reducerFunction(state, { type, payload }) {
+function reducerFunction(state, { type }) {
   switch (type) {
     case "LOGIN":
       return {
         ...state,
         loginStatus: !state.loginStatus,
       };
-      case "UPDATE_USER_INFO":
-        return{
-          ...state,
-          userInfo: payload,
-        }
     default:
       return state;
   }

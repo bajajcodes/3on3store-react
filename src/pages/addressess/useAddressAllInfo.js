@@ -2,10 +2,11 @@ import { useState } from "react";
 import { v4 as uuid } from "uuid";
 
 export function useAddressAllInfo() {
+  const [addressess, setAddressess] = useState([]);
   const [addressAllInfo, setAddressAllInfo] = useState({
     activeAddress: {},
     addressEditorDisplay: "none",
-    headerText: ""
+    headerText: "",
   });
 
   const newAddress = {
@@ -17,7 +18,7 @@ export function useAddressAllInfo() {
     pincode: "",
     state: "",
     number: "",
-    isDefault: false
+    isDefault: false,
   };
 
   function addressInputBtnHandler(_, address, headerText) {
@@ -25,9 +26,16 @@ export function useAddressAllInfo() {
       ...prev,
       activeAddress: address,
       headerText: headerText,
-      addressEditorDisplay: "flex"
+      addressEditorDisplay: "flex",
     }));
   }
 
-  return [newAddress, addressAllInfo, setAddressAllInfo, addressInputBtnHandler];
+  return [
+    addressess,
+    setAddressess,
+    newAddress,
+    addressAllInfo,
+    setAddressAllInfo,
+    addressInputBtnHandler,
+  ];
 }

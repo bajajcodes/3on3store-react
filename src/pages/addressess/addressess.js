@@ -2,15 +2,30 @@ import "./addressess.styles.css";
 import { EditAddress } from "./editaddress/editadress";
 import { useAuthContext } from "context";
 import { useAddressAllInfo } from "./useAddressAllInfo";
+import { useEffect } from "react";
 
 function Addressess() {
-  const {
-    authState: { userInfo },
-    authDispatch,
-    removeAddress,
-  } = useAuthContext();
-  const [newAddress, addressAllInfo, setAddressAllInfo, addressInputBtnHandler] =
-    useAddressAllInfo();
+  const {removeAddress } = useAuthContext();
+  const [
+    addressess,
+    setAddressess,
+    newAddress,
+    addressAllInfo,
+    setAddressAllInfo,
+    addressInputBtnHandler,
+  ] = useAddressAllInfo();
+
+  function getuserInfo() {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    return userInfo;
+  }
+
+  useEffect(() => {
+    const userInfo = getuserInfo();
+    if(userInfo.addressess){
+      setAddressess(userInfo.addressess);
+    }
+  }, []);
 
   return (
     <section className="addressess-section common-section">
@@ -25,7 +40,7 @@ function Addressess() {
         </button>
       </div>
       <div className="addressess-section-body">
-        {userInfo.addressess.map((address) => (
+        {addressess.map((address) => (
           <div className="address mt-9" key={address._id}>
             <div className="grid2D-col address-info">
               <div>
@@ -53,7 +68,7 @@ function Addressess() {
               <button
                 onClick={() => {
                   const userInfo = removeAddress(address);
-                  authDispatch({ type: "UPDATE_USER_INFO", payload: userInfo });
+                  setAddressess(userInfo.addressess);
                 }}
               >
                 Remove
@@ -62,7 +77,7 @@ function Addressess() {
           </div>
         ))}
       </div>
-      {userInfo.addressess.length === 0 && (
+      {addressess.length === 0 && (
         <h3>No address found, add address by clicking above ☝️</h3>
       )}
       <EditAddress
@@ -70,6 +85,7 @@ function Addressess() {
         address={addressAllInfo.activeAddress}
         setDisplay={setAddressAllInfo}
         headerText={addressAllInfo.headerText}
+        updateAddressess={setAddressess}
       />
     </section>
   );

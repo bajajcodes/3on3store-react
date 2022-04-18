@@ -3,8 +3,8 @@ import { useAuthContext } from "context";
 import { useEffect } from "react";
 import { useNewAddress } from "./useNewAddress";
 
-function EditAddress({ display, setDisplay, headerText, address }) {
-  const { authDispatch, saveAddress } = useAuthContext();
+function EditAddress({ display, setDisplay, headerText, address, updateAddressess }) {
+  const { saveAddress } = useAuthContext();
   const [newAddress, setNewAddress, onChangeHandler] = useNewAddress();
 
   useEffect(() => {
@@ -99,7 +99,7 @@ function EditAddress({ display, setDisplay, headerText, address }) {
             className="btn btn-primary"
             onClick={() => {
               const userInfo = saveAddress(newAddress);
-              authDispatch({ type: "UPDATE_USER_INFO", payload: userInfo });
+              updateAddressess(userInfo.addressess);
               setDisplay((prev) => ({ ...prev, addressEditorDisplay: "none" }));
             }}
           >
