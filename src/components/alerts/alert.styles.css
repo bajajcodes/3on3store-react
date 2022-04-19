@@ -1,6 +1,6 @@
 .alert {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 8vh;
   right: 8vw;
   width: 400px;
@@ -14,8 +14,6 @@
 
 @media (max-width: 768px) {
   .alert {
-    top: 10vh;
-    right: 10vw;
     width: 50vw !important;
     max-width: 60vw !important;  
   }

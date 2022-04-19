@@ -53,7 +53,7 @@ async function getCartItems() {
     const cart = response.data?.cart;
     return cart;
   } catch (exception) {
-    console.error(exception);
+    console.error({exception});
   }
 }
 

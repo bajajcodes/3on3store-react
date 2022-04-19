@@ -61,7 +61,7 @@ async function getWishlist() {
     const wishlist = response.data?.wishlist;
     return wishlist;
   } catch (exception) {
-    console.error(exception);
+    console.error({exception});
   }
 }
 

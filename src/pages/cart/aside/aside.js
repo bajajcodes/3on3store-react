@@ -86,7 +86,7 @@ function Aside() {
         <div className="cart-addressess mt-15">
           {getuserInfo().addressess.length === 0 && (
             <button
-              className="btn btn-secondary bg-grey"
+              className="btn btn-secondary"
               onClick={() => navigate("/account/addressess", { replace: true })}
             >
               Add Addressess
