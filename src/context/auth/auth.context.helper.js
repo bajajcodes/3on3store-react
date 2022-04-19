@@ -7,16 +7,56 @@ function cacheCredentialsToLocalStorage(response) {
     } = response;
     if (createdUser) {
       const { _id, email, firstName, lastName } = createdUser;
-      addToLocalStorage("userInfo", { _id, email, firstName, lastName });
+      addToLocalStorage("userInfo", {
+        _id,
+        email,
+        firstName,
+        lastName,
+        addressess: [],
+      });
     }
     if (foundUser) {
+      const addressess = getDefaultAddresses();
       const { _id, email, firstName, lastName } = foundUser;
-      addToLocalStorage("userInfo", { _id, email, firstName, lastName });
+      addToLocalStorage("userInfo", {
+        _id,
+        email,
+        firstName,
+        lastName,
+        addressess,
+      });
     }
     addToLocalStorage("token", encodedToken);
   } catch (exception) {
     return exception;
   }
+}
+
+function getDefaultAddresses() {
+  return [
+    {
+      _id: uuid(),
+      name: "SHubham Bajaj",
+      address: "830 Vishkarma Mohala City Center Road",
+      locality: "Near sita ram mandir",
+      city: "Yamuna Nagar",
+      pincode: "135001",
+      state: "Haryana",
+      number: "8950095195",
+      isDefault: true,
+    },
+    {
+      _id: uuid(),
+      name: "Gourav Arora",
+      address: "Vishnu nagar farakpur jagadhri workshop",
+      locality: "Railway fatak",
+      city: "Jagadhri railway workshop",
+      pincode: "135002",
+      state: "Haryana",
+      number: "7404595195",
+      isDefault: false,
+    },
+  ];
 }
 
 function addToLocalStorage(item, value) {
@@ -28,8 +68,39 @@ function checkIsTokenExsist() {
   return token ? true : false;
 }
 
-async function logout(){
+function getuserInfo() {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  return userInfo;
+}
 
+function removeAddress(oldAddress) {
+  const userInfo = getuserInfo();
+  const addressess = userInfo.addressess;
+  const updatedAddressess = addressess.filter(
+    (address) => address._id !== oldAddress._id
+  );
+  const updateduserInfo = ({ ...userInfo, addressess: updatedAddressess });
+  localStorage.setItem(
+    "userInfo",
+    JSON.stringify(updateduserInfo)
+  );
+  return updateduserInfo;
+}
+
+function saveAddress(newAddress) {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  if (userInfo.addressess.find((address) => address._id === newAddress._id)) {
+    userInfo.addressess = userInfo.addressess.map((address) =>
+      address._id !== newAddress._id ? address : { ...address, ...newAddress }
+    );
+  } else {
+    userInfo.addressess = userInfo.addressess.concat(newAddress);
+  }
+  localStorage.setItem("userInfo", JSON.stringify(userInfo));
+  return userInfo;
+}
+
+async function logout() {
   if (localStorage.getItem("token")) {
     localStorage.removeItem("token");
   } else {
@@ -39,9 +110,8 @@ async function logout(){
   if (localStorage.getItem("userInfo")) {
     localStorage.removeItem("userInfo");
   } else {
-    throw new Error("User is logged in, but token does not exsist.");
+    throw new Error("User is logged in, but user Info does not exsist.");
   }
-
 }
 
 async function login({ _email, _password }) {
@@ -75,4 +145,4 @@ async function signup({ _email, _password, _firstName, _lastName }) {
   }
 }
 
-export { checkIsTokenExsist, login, signup, logout };
+export { checkIsTokenExsist,removeAddress, saveAddress, login, signup, logout };

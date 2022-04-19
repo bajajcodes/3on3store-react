@@ -1,0 +1,59 @@
+.addressess-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--size-9);
+}
+
+.addressess-section-header {
+  align-self: flex-end;
+}
+
+.addressess-section-header .btn {
+  width: max-content;
+  align-self: flex-end;
+  position: unset;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  border: var(--size-2) solid;
+}
+
+.grid2D-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  padding: var(--size-5);
+}
+
+.address-actions {
+  align-items: center;
+  border-top: var(--size-2) solid;
+}
+
+.address-actions button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: var(--size-5);
+  cursor: pointer;
+  text-transform: uppercase;
+  color: var(--logo-color);
+  font-weight: var(--weight-black);
+}
+
+.address-actions button:first-of-type {
+  border-right: 1px solid var(--black);
+}
+
+.address:hover {
+  box-shadow: 3px 3px var(--card-box-shadow);
+}
+
+@media (max-width: 768px) {
+  .addressess-section {
+    width: unset;
+  }
+
+}

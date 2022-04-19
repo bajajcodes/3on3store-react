@@ -117,7 +117,7 @@ function Navbar() {
         )}
         <li className="nav-item">
           <Link
-            to="/profile"
+            to="/account/profile"
             className="nav-link nav-link-with-hover-reset dflex"
           >
             <span className="material-icons">person_outline</span>
