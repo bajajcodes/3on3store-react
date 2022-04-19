@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useCartContext } from "context";
 import { useAuthContext, useAlert } from "context";
 
 export function useCartHandler() {
   const {
+    getCartItems,
     checkInCart,
     cartDispatch,
     addToCart,
@@ -15,6 +16,7 @@ export function useCartHandler() {
   } = useAuthContext();
   const { alertDispatch, showAlert, hideAlert } = useAlert();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   async function updateItemHandler(product, type) {
     let cart = [];
@@ -51,7 +53,9 @@ export function useCartHandler() {
 
       if (type === "ADD") {
         if (checkInCart(product._id)) {
-          cart = await updateItemInCart(product, "increment");
+          navigate("/cart", { replace: true });
+          cart = await getCartItems();
+          // cart = await updateItemInCart(product, "increment");
         } else {
           cart = await addToCart(product);
         }
@@ -60,7 +64,7 @@ export function useCartHandler() {
       }
       cartDispatch({ type: "UPDATE", cart });
 
-      if (type === "ADD") {
+      if (type === "ADD" && !checkInCart(product._id)) {
         showAlert(alertDispatch, "Added to Cart", product.title, "success");
         hideAlert(alertDispatch);
       }

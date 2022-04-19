@@ -70,6 +70,8 @@ function Card({ product, isDescNeeded = false }) {
             <span className="material-icons-outlined">shopping_cart</span>
             {checkInCart(_id) && pathname === "/cart"
               ? "Remove fom cart"
+              : checkInCart(_id) && pathname !== "/cart"
+              ? "Go to Cart"
               : "Add to Cart"}
           </button>
         </div>

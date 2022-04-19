@@ -3,9 +3,10 @@ import { EditAddress } from "./editaddress/editadress";
 import { useAuthContext } from "context";
 import { useAddressAllInfo } from "./useAddressAllInfo";
 import { useEffect } from "react";
+import { showAddress } from "./showAddress";
 
 function Addressess() {
-  const {removeAddress } = useAuthContext();
+  const { removeAddress } = useAuthContext();
   const [
     addressess,
     setAddressess,
@@ -16,13 +17,12 @@ function Addressess() {
   ] = useAddressAllInfo();
 
   function getuserInfo() {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-    return userInfo;
+    return JSON.parse(localStorage.getItem("userInfo"));
   }
 
   useEffect(() => {
     const userInfo = getuserInfo();
-    if(userInfo.addressess){
+    if (userInfo.addressess) {
       setAddressess(userInfo.addressess);
     }
   }, []);
@@ -42,21 +42,7 @@ function Addressess() {
       <div className="addressess-section-body">
         {addressess.map((address) => (
           <div className="address mt-9" key={address._id}>
-            <div className="grid2D-col address-info">
-              <div>
-                <h4 className="mb-10">{address.name}</h4>
-                <p>{address.address}</p>
-                <p>{address.locality}</p>
-                <p>
-                  {address.city} and {address.pincode}
-                </p>
-                <p>{address.state}</p>
-                <p>Mobile: {address.number}</p>
-              </div>
-              {address.isDefault && (
-                <div className="align-text-right">Default</div>
-              )}
-            </div>
+            {showAddress(address)}
             <div className="grid2D-col address-actions">
               <button
                 onClick={(e) =>

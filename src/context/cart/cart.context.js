@@ -40,6 +40,7 @@ function CartProvider({ children }) {
       value={{
         cartState,
         cartDispatch,
+        getCartItems,
         checkInCart,
         addToCart,
         removeFromCart,
