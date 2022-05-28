@@ -1,3 +1,8 @@
+.images-container{
+  position: relative;
+  order: 2;
+}
+
 .slide {
   height: 80vh;
   background-size: contain;
@@ -26,6 +31,17 @@
 #arrow-right {
   border-width: var(--size-10) 0 var(--size-10) var(--size-12);
   border-color: transparent transparent transparent var(--logo-color);
-  right: 50%;
+  right: 0;
   margin-right: var(--size-10);
+}
+
+
+@media (min-width:768px){
+  /* #arrow-right{
+    right: 50%;
+  } */
+
+  .images-container{
+    order: 1;
+  }
 }

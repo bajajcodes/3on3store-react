@@ -14,9 +14,9 @@ function Main() {
               <div>
                 <div>Three things:</div>
                 <div className="dflex">
-                  <span>- Strength/Aesthetics/Fitness</span>
-                  <span>- Knowledge/Wisdom/Intelligence</span>
-                  <span>- Social Skills/Machiavellianism/Game</span>
+                  <span>- Strength</span>
+                  <span>- Intelligence</span>
+                  <span>- Social Skills</span>
                 </div>
               </div>
 

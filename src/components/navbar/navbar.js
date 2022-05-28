@@ -120,7 +120,9 @@ function Navbar() {
             to="/account/profile"
             className="nav-link nav-link-with-hover-reset dflex"
           >
-            <span className="material-icons">person_outline</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons">person_outline</span>
+            </div>
             <span className="material-icons-txt">Profile</span>
           </Link>
         </li>
@@ -131,7 +133,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons"> favorite_border</span>
-              {wishlist.length > 0  && (
+              {wishlist.length > 0 && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>{" "}
@@ -145,7 +147,7 @@ function Navbar() {
           >
             <div className="badge-wrapper position-relative">
               <span className="material-icons-outlined">shopping_cart</span>
-              {cart.length > 0  && (
+              {cart.length > 0 && (
                 <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
               )}
             </div>

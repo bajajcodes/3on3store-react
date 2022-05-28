@@ -1,3 +1,4 @@
+import "styles/reset.css";
 import { RouteSwitch } from "./RouteSwitch";
 import { ContextProvider } from "./ConextProviders";
 import { Alert } from "components";

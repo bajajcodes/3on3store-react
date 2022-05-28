@@ -103,6 +103,11 @@
   overflow-y: auto;
   border: 2px solid;
   padding: var(--size-9);
+  background: var(--white);
+}
+
+.cart-addressess .dflex :last-child :hover {
+  text-decoration: none;
 }
 
 .cart-addressess .justify-content-start{

@@ -2,7 +2,7 @@
   display: none;
   position: fixed;
   top: 8vh;
-  right: 8vw;
+  right: 2vw;
   width: 400px;
   z-index: 12;
   max-width: 500px;
@@ -13,8 +13,12 @@
 }
 
 @media (max-width: 768px) {
-  .alert {
+  /* .alert {
     width: 50vw !important;
     max-width: 60vw !important;  
+  } */
+
+  .alert{
+    width: 320px;
   }
 }
