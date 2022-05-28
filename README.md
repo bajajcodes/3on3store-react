@@ -26,10 +26,7 @@
  [ ✅ ] Responsive
  
 ## Preview
-
-https://user-images.githubusercontent.com/29247011/161843078-849053a0-0a9d-4012-a4da-49b9531464c0.mp4
-
-https://user-images.githubusercontent.com/29247011/161843118-6a105f38-3057-4414-a089-4a6f6e398064.mp4
+https://user-images.githubusercontent.com/29247011/170822285-88de4aa2-c6cc-4daa-ac78-717c34300951.mp4
 
 ## Get app from here 👇
 [3 on 3 Store](https://3on3store-react.netlify.app/)
