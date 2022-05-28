@@ -1,5 +1,7 @@
 import { CardContainer } from "./cardContainer";
 import { useCartContext } from "context";
+import {LinkButton} from "components";
+
 
 function Main() {
   const { cartState } = useCartContext();
@@ -12,6 +14,9 @@ function Main() {
           ? `My Cart (${numberOfProductsInCart})`
           : `Your Cart is empty 😦`}
       </h2>
+      {
+        numberOfProductsInCart === 0 && <LinkButton to="/products" text="Get Products" />
+      }
       <CardContainer />
     </main>
   );

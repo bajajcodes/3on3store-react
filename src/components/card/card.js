@@ -1,72 +1,39 @@
-import "./card.styles.css";
 import { Star } from "../star/star";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useWishlistContext, useCartContext } from "context";
-import { useState } from "react";
-import { useAuthContext } from "context";
+import { useWishlistHandler } from "./useWishlistHandler";
+import { useCartHandler } from "./useCartHandler";
 
-function Card({ product }) {
-  const { _id, title, price, description, image, rating, quantity } = product;
-  const [alertDisplay, setAlertDisplay] = useState("none");
+function Card({ product, isDescNeeded = false }) {
+  const { _id, title, price, description, image, rating, qty } = product;
   const { pathname } = useLocation();
-  const { wishlistDispatch, checkInWishlist } = useWishlistContext();
-  const { checkInCart, cartDispatch } = useCartContext();
-  const {
-    authState: { loginStatus },
-  } = useAuthContext();
-
-  function cartHandler(product) {
-    if (loginStatus === true) {
-      const isProductRemoveable = pathname === "/cart" ? "REMOVE" : "ADD";
-      const type = checkInCart(product._id) ? isProductRemoveable : "ADD";
-      cartDispatch({ type, product });
-
-      if (type === "ADD") {
-        setAlertDisplay("inline-block");
-        setTimeout(() => setAlertDisplay("none"), 3000);
-      }
-    }
-
-    if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
-    }
-  }
-
-  function wishlistHandler(product) {
-    if (loginStatus === true) {
-      const type = checkInWishlist(product._id) ? "REMOVE" : "ADD";
-      wishlistDispatch({ type, product });
-    }
-
-    if (loginStatus === false) {
-      setAlertDisplay("inline-block");
-      setTimeout(() => setAlertDisplay("none"), 3000);
-    }
-  }
+  const { checkInWishlist } = useWishlistContext();
+  const { checkInCart } = useCartContext();
+  const [wishlistHandler] = useWishlistHandler();
+  const [updateItemHandler, cartHandler] = useCartHandler();
 
   return (
     <div className="card">
-      <div className="alert alert-bg-success" style={{ display: alertDisplay }}>
-        <div>
-          <div className="alert-message">
-            {loginStatus
-              ? `${title}, added to cart.`
-              : `Login First, to make it happen.`}
-          </div>
-        </div>
-      </div>
-      <div>
-        <img src={image} alt={description} className="card-img" />
-      </div>
+      <Link to={`/products/${product._id}`} key={product._id}>
+        <img
+          src={image}
+          alt={description}
+          className="card-img"
+          loading="lazy"
+        />
+      </Link>
+
       <div className="card-body">
-        <div className="card-heading">
-          <h5 className="card-title">{title}</h5>
-          <h6 className="card-subtitle card-price">₹{price}</h6>
-        </div>
-        <p className="card-text">
-          <Star marked={true} />({rating})
-        </p>
+        <Link to={`/products/${product._id}`} key={product._id}>
+          <div className="card-heading">
+            <h5 className="card-title">{title}</h5>
+            <h6 className="card-subtitle card-price">₹{price}</h6>
+          </div>
+          {isDescNeeded && <p className="card-text">{description}</p>}
+          <p className="card-text">
+            <Star marked={true} />({rating})
+          </p>
+        </Link>
         <span
           className=" card-img-dismiss-overlay"
           onClick={() => wishlistHandler(product)}
@@ -81,18 +48,14 @@ function Card({ product }) {
             <div className="dflex align-center-and-space-between qunatity-action">
               <button
                 className="btn btn-outline-secondary quantity-btn"
-                onClick={() =>
-                  cartDispatch({ type: "DECREASE_QUANTITY", product })
-                }
+                onClick={() => updateItemHandler(product, "decrement")}
               >
                 <span className="material-icons">remove</span>
               </button>
-              <div>Quantity: {quantity}</div>
+              <div>Quantity: {qty}</div>
               <button
                 className="btn btn-outline-secondary quantity-btn"
-                onClick={() =>
-                  cartDispatch({ type: "INCREASE_QUANTITY", product })
-                }
+                onClick={() => updateItemHandler(product, "increment")}
               >
                 <span className="material-icons">add</span>
               </button>
@@ -107,6 +70,8 @@ function Card({ product }) {
             <span className="material-icons-outlined">shopping_cart</span>
             {checkInCart(_id) && pathname === "/cart"
               ? "Remove fom cart"
+              : checkInCart(_id) && pathname !== "/cart"
+              ? "Go to Cart"
               : "Add to Cart"}
           </button>
         </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
 function cacheCredentialsToLocalStorage(response) {
   try {
@@ -7,16 +8,56 @@ function cacheCredentialsToLocalStorage(response) {
     } = response;
     if (createdUser) {
       const { _id, email, firstName, lastName } = createdUser;
-      addToLocalStorage("userInfo", { _id, email, firstName, lastName });
+      addToLocalStorage("userInfo", {
+        _id,
+        email,
+        firstName,
+        lastName,
+        addressess : [],
+      });
     }
     if (foundUser) {
+      const addressess = getDefaultAddresses();
       const { _id, email, firstName, lastName } = foundUser;
-      addToLocalStorage("userInfo", { _id, email, firstName, lastName });
+      addToLocalStorage("userInfo", {
+        _id,
+        email,
+        firstName,
+        lastName,
+        addressess,
+      });
     }
     addToLocalStorage("token", encodedToken);
   } catch (exception) {
     return exception;
   }
+}
+
+function getDefaultAddresses() {
+  return [
+    {
+      _id: uuid(),
+      name: "SHubham Bajaj",
+      address: "830 Vishkarma Mohala City Center Road",
+      locality: "Near sita ram mandir",
+      city: "Yamuna Nagar",
+      pincode: "135001",
+      state: "Haryana",
+      number: "8950095195",
+      isDefault: true,
+    },
+    {
+      _id: uuid(),
+      name: "Gourav Arora",
+      address: "Vishnu nagar farakpur jagadhri workshop",
+      locality: "Railway fatak",
+      city: "Jagadhri railway workshop",
+      pincode: "135002",
+      state: "Haryana",
+      number: "7404595195",
+      isDefault: false,
+    },
+  ];
 }
 
 function addToLocalStorage(item, value) {
@@ -43,6 +84,9 @@ async function login({ _email, _password }) {
     };
 
     const response = await axios.post("/api/auth/login", body);
+    if (response.status !== 200) {
+      throw new Error(`Invalid credentials.`);
+    }
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "login successful." };
   } catch (exception) {
@@ -101,6 +145,9 @@ async function signup({ _email, _password, _firstName, _lastName }) {
       lastName: _lastName,
     };
     const response = await axios.post("/api/auth/signup", body);
+    if (response.status !== 201) {
+      throw new Error(`Invalid credentials.`);
+    }
     cacheCredentialsToLocalStorage(response);
     return { status: true, message: "signup successful." };
   } catch (exception) {

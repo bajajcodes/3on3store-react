@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "./navbar.styles.css";
 import { logoImage } from "data";
-import { useAuthContext } from "context";
+import { useAuthContext, useWishlistContext, useCartContext } from "context";
 
 function Navbar() {
   const [toggleNavbarNav, setToggleNavbarNav] = useState("");
@@ -10,20 +10,30 @@ function Navbar() {
   const {
     authState: { loginStatus },
     authDispatch,
+    logout,
   } = useAuthContext();
+  const {
+    wishlistState: { wishlist },
+    wishlistDispatch,
+  } = useWishlistContext();
+  const {
+    cartState: { cart },
+    cartDispatch,
+  } = useCartContext();
+  const location = useLocation();
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [filter, setFilter] = useState("");
 
   function hamburgerMenuClickHandler() {
     setToggleNavbarNav((prevShow) => (prevShow ? "" : "show"));
   }
 
   function logoutClickHandler() {
-    if (loginStatus === true) {
-      if (localStorage.getItem("token")) {
-        const result = localStorage.removeItem("token");
-        authDispatch({ type: "LOGOUT" });
-      } else {
-        throw new Exception("User is logged in, but token does not exsist.");
-      }
+    if (loginStatus) {
+      authDispatch({ type: "LOGIN" });
+      wishlistDispatch({ type: "UPDATE", wishlist: [] });
+      cartDispatch({ type: "UPDATE", cart: [] });
+      logout();
     }
   }
 
@@ -41,15 +51,34 @@ function Navbar() {
           <span className="estore-name">3 on 3 Store</span>
         </Link>
       </div>
-
-      <div className="search-box">
-        <div className="input-group">
-          <input type="text" className="input" placeholder="Search" />
-          <button>
-            <span className="material-icons input-group-icon">search</span>
-          </button>
+      {location.pathname.startsWith("/products") && (
+        <div className="search-box">
+          <div className="input-group">
+            <input
+              type="text"
+              className="input"
+              placeholder="Search products..."
+              value={searchParams.get("filter") || ""}
+              onChange={(event) => {
+                let filter = event.target.value;
+                setFilter(filter);
+                if (filter) {
+                  setSearchParams({ filter });
+                } else {
+                  setSearchParams({});
+                }
+              }}
+            />
+            <button
+              onClick={() => {
+                setSearchParams({ filter });
+              }}
+            >
+              <span className="material-icons input-group-icon">search</span>
+            </button>
+          </div>
         </div>
-      </div>
+      )}
 
       <button
         className="hamburger"
@@ -77,16 +106,23 @@ function Navbar() {
         {loginStatus && (
           <li className="nav-item">
             <Link to="#" className="nav-link">
-              <button className="btn btn-secondary bg-grey" onClick={() => logoutClickHandler()}>Logout</button>
+              <button
+                className="btn btn-secondary bg-grey"
+                onClick={() => logoutClickHandler()}
+              >
+                Logout
+              </button>
             </Link>
           </li>
         )}
         <li className="nav-item">
           <Link
-            to="/profile"
+            to="/account/profile"
             className="nav-link nav-link-with-hover-reset dflex"
           >
-            <span className="material-icons">person_outline</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons">person_outline</span>
+            </div>
             <span className="material-icons-txt">Profile</span>
           </Link>
         </li>
@@ -95,7 +131,12 @@ function Navbar() {
             to="/wishlist"
             className="nav-link nav-link-with-hover-reset dflex"
           >
-            <span className="material-icons">favorite_border</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons"> favorite_border</span>
+              {wishlist.length > 0 && (
+                <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
+              )}
+            </div>{" "}
             <span className="material-icons-txt">Wishlist</span>
           </Link>
         </li>
@@ -104,7 +145,12 @@ function Navbar() {
             to="/cart"
             className="nav-link nav-link-with-hover-reset  dflex"
           >
-            <span className="material-icons-outlined">shopping_cart</span>
+            <div className="badge-wrapper position-relative">
+              <span className="material-icons-outlined">shopping_cart</span>
+              {cart.length > 0 && (
+                <div className="badge-status position-absolute badge-status-sm count-blue badge-count-color-pos  border-rounded-circle"></div>
+              )}
+            </div>
             <span className="material-icons-txt">Cart</span>
           </Link>
         </li>

@@ -1,124 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import {
-  togglePasswordVisibilityIcon,
-  togglePasswordInputType,
-  getUserSignup,
-} from "./main.helper";
-import { ErrorAlert } from "../alert/alert";
-import { useAuthContext } from "context";
+import { Link } from "react-router-dom";
+import {useSignupValidation} from "./useSignupValidation";
 
 function AuthSignup() {
-  const [formFields, setFormFields] = useState({
-    _firstName: "",
-    _lastName: "",
-    _email: "",
-    _password: "",
-    _confirmPassword: "",
-  });
 
-  const [passwordFieldsIconsToggle, setPasswordFieldsIconsToggle] = useState({
-    passwordIcon: "visibility_off",
-    passwordType: "password",
-    confirmPasswordIcon: "visibility_off",
-    confirmPasswordType: "password",
-  });
-
-  const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
-  const navigate = useNavigate();
-  const { authDispatch } = useAuthContext();
-
-  function handleChange(event) {
-    const value = event.target.value;
-    setFormFields({
-      ...formFields,
-      [event.target.name]: value,
-    });
-  }
-
-  function handlePasswordIconsClick(event) {
-    const name = event.target.getAttribute("datainputtypename");
-    const type = event.target.getAttribute("dataiconname");
-
-    setPasswordFieldsIconsToggle({
-      ...passwordFieldsIconsToggle,
-      [name]: togglePasswordVisibilityIcon(passwordFieldsIconsToggle[name]),
-      [type]: togglePasswordInputType(passwordFieldsIconsToggle[type]),
-    });
-  }
-
-  async function signupClickHandler(event) {
-    event.preventDefault();
-
-    if (formFields["_password"] !== formFields["_confirmPassword"]) {
-      setAlertInfo({
-        display: true,
-        message: "Passwords do not match",
-      });
-      const timeoutValue = setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
-      );
-    } else if (
-      (formFields["_password"].length === 0 ||
-        formFields["_confirmPassword"].length === 0) &&
-      formFields["_lastName"].length
-    ) {
-      setAlertInfo({
-        display: true,
-        message: "Check Passwords.",
-      });
-      const timeoutValue = setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
-      );
-    } else if (formFields["_password"] === formFields["_confirmPassword"]) {
-      const { isSignuped, info } = await getUserSignup(formFields);
-
-      setFormFields((prev) => ({
-        _firstName: "",
-        _lastName: "",
-        _email: "",
-        _password: "",
-        _confirmPassword: "",
-      }));
-
-      if (isSignuped) {
-        authDispatch({
-          type: "SIGNUP",
-        });
-        navigate("/products");
-      } else if (isSignuped === false) {
-        setAlertInfo(info);
-        const timeoutValue = setTimeout(
-          () =>
-            setAlertInfo((prev) => ({
-              ...prev,
-              display: !prev.display,
-              message: "",
-            })),
-          3000
-        );
-      }
-    }
-  }
+  const [
+    formFields,
+    passwordFieldsIconsToggle,
+    signupClickHandler,
+    handlePasswordIconsClick,
+    handleChange,
+  ] = useSignupValidation();
 
   return (
     <main className="auth-main">
-      <ErrorAlert
-        message={alertInfo.message}
-        displayValue={alertInfo.display}
-      />
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">
           <span className="input-group-text">Email</span>

@@ -23,9 +23,9 @@
 }
 
 /* main-content text-content */
-.images-container {
+/* .images-container {
   display: none;
-}
+} */
 
 .column-padding {
   padding: 2vw 4vw;
@@ -37,6 +37,7 @@
   row-gap: 1rem;
   align-items: center;
   justify-content: center;
+  word-break: break-word;
 }
 
 .text-xxl {
@@ -106,11 +107,16 @@
   .images-container {
     display: initial;
     border-right: 1px solid;
+    order: 1;
   }
 
   .images-container,
   .column-padding {
     padding: 0;
+  }
+
+  .column-padding {
+    order: 2;
   }
 
   .home-button {

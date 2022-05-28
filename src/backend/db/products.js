@@ -115,16 +115,6 @@ const intelligenceProducts = [
   {
     _id: uuid(),
     categoryName: "intelligence",
-    description:
-      "Hey brother, let me ask you a simple question:Do you need more discipline in your life?",
-    image: "https://public-files.gumroad.com/x1893nxo9y8ovbu3vi6aomfswt9a",
-    price: "19.99",
-    rating: "1",
-    title: "Live Intentionally: 90 Day Self-Improvement Program",
-  },
-  {
-    _id: uuid(),
-    categoryName: "intelligence",
     description: "HOW TO CREATE WEALTH",
     image: "https://public-files.gumroad.com/3jcvitytkoiwipbvbuzlnq642m37",
     price: "59.99",

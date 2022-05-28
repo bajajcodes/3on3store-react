@@ -1,0 +1,41 @@
+.loader-container {
+  z-index: 20;
+  background: transparent;
+  position: absolute;
+  left: 50%;
+  transform: translate(-30%, 0);
+  width: max-content;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loader-container .loader-message {
+  color: var(--black);
+}
+
+.loader-container .loader {
+  border: var(--size-9) solid var(--black);
+  border-radius: 50%;
+  border-top: var(--size-9) solid var(--logo-color);
+  border-bottom: var(--size-9) solid var(--logo-color);
+  width: calc(var(--size-9) * 4);
+  height: calc(var(--size-9) * 4);
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width:768px) {
+  .loader-container{
+    transform: translate(-50%, 0);
+  }
+}

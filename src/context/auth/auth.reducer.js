@@ -3,19 +3,8 @@ function reducerFunction(state, { type }) {
     case "LOGIN":
       return {
         ...state,
-        loginStatus: true,
+        loginStatus: !state.loginStatus,
       };
-    case "SIGNUP":
-      return {
-        ...state,
-        signupStatus: true,
-        loginStatus: true,
-      };
-      case "LOGOUT":
-        return {
-          ...state,
-          loginStatus: false,
-        };
     default:
       return state;
   }

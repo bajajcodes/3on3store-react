@@ -1,29 +1,29 @@
-import { Card } from "components";
+import { Card, Loader } from "components";
 import { useProducts } from "context";
-
-function sastaLoader() {
-  return (
-    <h2
-      style={{
-        textAlign: "center",
-        border: "5px groove var(--logo-color)",
-      }}
-    >
-      Loading<span>...</span>
-    </h2>
-  );
-}
+import { useSearchFeature } from "./useSearchFeature";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function CardContainer() {
-  const { filteredProducts } = useProducts();
+  const [getSearchedProducts] = useSearchFeature();
+  const { filteredProducts, productsDispatch } = useProducts();
+  const products = getSearchedProducts(filteredProducts);
+  const location = useLocation();
+
+  useEffect(() => {
+    return () => productsDispatch({ type: "CLEAR_ALL_FILTERS" });
+  }, [location.pathname]);
 
   return (
     <div className="products-cards-container">
-      {filteredProducts &&
-        filteredProducts.map((product, index) => (
-          <Card product={product} key={index} />
-        ))}
-      {!filteredProducts.length && sastaLoader()}
+      {products.length > 0 && <Loader /> &&
+        products.map((product) => <Card product={product} key={product._id} />)}
+      {products.length < 1 && filteredProducts.length < 1 && (
+        <Loader display="flex" message="Products" />
+      )}
+      {products.length < 1 && filteredProducts.length > 1 && (
+        <h1>No Videos Found</h1>
+      )}
     </div>
   );
 }

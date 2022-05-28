@@ -71,13 +71,9 @@
   transform: scale(1.2);
 }
 
-.nav-link.dflex .material-icons-outlined,
-.nav-link.dflex .material-icons {
-  font-size: var(--size-9);
-}
-
 .nav-link.dflex .material-icons-txt {
   font-size: calc(var(--size-7) * 1.1);
+  font-weight: 600;
 }
 
 .active-nav-item {
@@ -132,7 +128,8 @@
     align-items: flex-start;
   }
 
-  .nav-link.dflex > span:first-child {
+  .nav-link.dflex > span:first-child,
+  .nav-link.dflex > div:first-child  {
     display: none;
   }
 

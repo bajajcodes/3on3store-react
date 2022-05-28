@@ -1,59 +1,19 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useAuthContext } from "context";
-import { ErrorAlert } from "../alert/alert";
-import { getUserLogin } from "./main.helper";
+import { Link } from "react-router-dom";
+import { useLoginValidation } from "./useLoginValidation";
 
 function AuthLogin() {
-  const [_email, setEmail] = useState("");
-  const [_password, setPassword] = useState("");
-  const [alertInfo, setAlertInfo] = useState({ display: false, message: "" });
-  const navigate = useNavigate();
-  const { authDispatch } = useAuthContext();
+  const [
+    _email,
+    _password,
+    setEmail,
+    setPassword,
+    loginClickHandler,
+    fillTestLoginCredentials,
+  ] = useLoginValidation();
 
-  function loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info) {
-    if (loggedIn) {
-      authDispatch({
-        type: "LOGIN",
-      });
-      navigate("/products");
-    } else if (loggedIn === false) {
-      setAlertInfo(info);
-      const timeoutValue = setTimeout(
-        () =>
-          setAlertInfo((prev) => ({
-            ...prev,
-            display: !prev.display,
-            message: "",
-          })),
-        3000
-      );
-    }
-  }
-
-  async function loginClickHandler(event) {
-    event.preventDefault();
-
-    const { loggedIn, info } = await getUserLogin({ _email, _password });
-
-    setEmail("");
-    setPassword("");
-
-    loginHandler(loggedIn, authDispatch, navigate, setAlertInfo, info);
-  }
-
-  async function fillTestLoginCredentials(event) {
-    event.preventDefault();
-    setEmail("shubham@bajaj.com");
-    setPassword("shubhambajaj");
-  }
 
   return (
     <main className="auth-main">
-      <ErrorAlert
-        message={alertInfo.message}
-        displayValue={alertInfo.display}
-      />
 
       <form className="dgrid-section">
         <div className="flex-nowrap input-group dgrid-fieldset">

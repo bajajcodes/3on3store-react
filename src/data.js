@@ -31,7 +31,7 @@ const slides = {
   sliderImages: [
     {
       source: `${process.env.PUBLIC_URL}/images/Hangout-rafiki.svg`,
-      category: "social skills",
+      category: "social",
     },
     {
       source: `${process.env.PUBLIC_URL}/images/Workout-rafiki.svg`,
@@ -47,4 +47,59 @@ const slides = {
 
 const starColor = "#38cfea";
 
-export { logoImage, ecommerceName, starColor, slides, authInfo };
+const profileInfo = [
+  {
+    headerText: "Email ID",
+    itemKey: "email",
+  },
+  {
+    headerText: "First Name",
+    itemKey: "firstName",
+  },
+  {
+    headerText: "Last Name",
+    itemKey: "lastName",
+  },
+  {
+    headerText: "User Name",
+    itemKey: "userName",
+  },
+  {
+    headerText: "Gender",
+    itemKey: "gender",
+  },
+  {
+    headerText: "Mobile Number",
+    itemKey: "number",
+  },
+  {
+    headerText: "Date Of Birth",
+    itemKey: "dob",
+  },
+];
+
+const profileInputFields = [
+  {
+    text: "name",
+  },
+  {
+    text: "number",
+  },
+  {
+    text: "pincode",
+  },
+  {
+    text: "state",
+  },
+  {
+    text: "address",
+  },
+  {
+    text: "locality",
+  },
+  {
+    text: "city",
+  },
+];
+
+export { logoImage, ecommerceName, starColor, slides, authInfo, profileInfo,profileInputFields };
